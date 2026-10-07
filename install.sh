@@ -40,7 +40,8 @@ if claude plugin marketplace list 2>/dev/null | grep -q "${REPO%%#*}"; then
 else
   claude plugin marketplace add "$REPO" >/dev/null || die "Không thêm được nguồn plugin từ GitHub."
 fi
-claude plugin install storeleads@qikify >/dev/null 2>&1 || claude plugin update storeleads@qikify >/dev/null 2>&1 || true
+claude plugin install storeleads@qikify >/dev/null 2>&1 || true
+claude plugin update storeleads@qikify >/dev/null 2>&1 || true   # install is a no-op when already installed
 claude plugin enable storeleads@qikify >/dev/null 2>&1 || true
 printf '{"grafana_token":"%s"}' "$TOKEN" | claude plugin configure storeleads@qikify --values-stdin >/dev/null \
   || die "Lưu token không được. Nhắn Toàn kèm ảnh chụp màn hình này."
