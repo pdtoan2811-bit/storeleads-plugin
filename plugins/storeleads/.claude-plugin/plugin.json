@@ -1,0 +1,24 @@
+{
+  "name": "storeleads",
+  "displayName": "StoreLeads",
+  "version": "1.0.0-3f1c4807",
+  "description": "StoreLeads Shopify app & store data (24 monthly snapshots) through the team Grafana: installs, growth, Plus, competitors, stacks, churn, categories. Internal use only.",
+  "author": {
+    "name": "Qikify / Ownego"
+  },
+  "repository": "https://github.com/pdtoan2811-bit/qikify-plugins",
+  "keywords": [
+    "shopify",
+    "storeleads",
+    "grafana"
+  ],
+  "userConfig": {
+    "grafana_token": {
+      "type": "string",
+      "title": "Grafana token (StoreLeads)",
+      "sensitive": true,
+      "required": true,
+      "description": "Read-only token for storedata.ecvision.ai. Ask Toàn or Đức on Slack."
+    }
+  }
+}

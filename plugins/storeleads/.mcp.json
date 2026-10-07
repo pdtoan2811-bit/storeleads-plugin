@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "grafana": {
+      "command": "uvx",
+      "args": [
+        "mcp-grafana",
+        "--enabled-tools",
+        "search,datasource,dashboard,folder,navigation,sql",
+        "--disable-write",
+        "--enable-query"
+      ],
+      "env": {
+        "GRAFANA_URL": "https://storedata.ecvision.ai",
+        "GRAFANA_SERVICE_ACCOUNT_TOKEN": "${user_config.grafana_token}"
+      }
+    }
+  }
+}
