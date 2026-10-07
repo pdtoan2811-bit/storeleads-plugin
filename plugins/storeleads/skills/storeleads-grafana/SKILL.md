@@ -19,9 +19,9 @@ database `slim`. Read-only.
    "Last N days" counts back from the snapshot date **2026-09-27**, never from today's date.
    Data before Oct 2024 does not exist — say so, never guess.
 2. **Pick apps by `app_key`, never by name.** Names collide ("Product Reviews" is Shopify's own app). Resolve
-   first (recipe 0). If one candidate has over 2× the stores of the next, or the name is a vendor brand ("Yotpo",
-   "Loox"), take the biggest, say which one in one line and name the others — don't stop to ask. Ask only when
-   no candidate clearly dominates.
+   first (recipe 0). For an app or brand NAME ("Yotpo", "Loox"): if one candidate has over 2× the stores of the
+   next, take it, say which one in one line and name the others — don't stop to ask. A generic word ("the reviews
+   app", "an email app") is never a name: always list candidates and ask (see Working rules).
 3. **`losses` counts stores that no longer have the app, INCLUDING stores that left the data** (closed, paused,
    not crawled). To count real uninstalls, use recipe 7 (drops while the store stays active).
 4. **One shop with several domains counts once**, so app store counts run 1–7% under StoreLeads' own figures.
