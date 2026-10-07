@@ -32,6 +32,11 @@ if ! command -v uvx >/dev/null && [ ! -x "$HOME/.local/bin/uvx" ]; then
   curl -LsSf https://astral.sh/uv/install.sh | sh >/dev/null 2>&1 || die "Cài uv không được. Thử: brew install uv"
 fi
 say "✓ uv"
+UVX="$(command -v uvx || echo "$HOME/.local/bin/uvx")"
+mkdir -p "$HOME/.claude" && printf '%s\n' "$UVX" > "$HOME/.claude/storeleads-uvx"   # the MCP wrapper reads this: apps like Orca start Claude without a shell PATH
+say "… Tải kết nối Grafana (lần đầu có thể mất 1–2 phút)"
+"$UVX" mcp-grafana@2.0.1 --version >/dev/null 2>&1 || die "Tải kết nối Grafana không được. Kiểm tra mạng rồi chạy lại dòng cài."
+say "✓ Kết nối Grafana sẵn sàng"
 
 # 3 · plugin (public repo → HTTPS, no GitHub account needed)
 export CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1
@@ -57,6 +62,7 @@ import json, os, sys
 p = sys.argv[1]
 s = json.load(open(p)) if os.path.exists(p) and os.path.getsize(p) else {}
 allow = s.setdefault("permissions", {}).setdefault("allow", [])
+s.setdefault("env", {}).setdefault("MCP_TIMEOUT", "120000")   # slow machines / networks: wait up to 2 min for MCP start
 for r in ["Skill(storeleads:*)", "mcp__plugin_storeleads_grafana", "Read(~/.claude/plugins/**)", "Edit(~/Downloads/storeleads-*)"]:
     if r not in allow: allow.append(r)
 allow[:] = [r for r in allow if r != "Write(~/Downloads/storeleads-*)"]   # an earlier, ineffective form
