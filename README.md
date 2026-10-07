@@ -27,7 +27,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 **3. Thêm plugin.** Mở Claude Code (`claude`), gõ lần lượt:
 
 ```
-/plugin marketplace add pdtoan2811-bit/qikify-plugins
+/plugin marketplace add pdtoan2811-bit/storeleads-plugin
 /plugin install storeleads@qikify
 ```
 
