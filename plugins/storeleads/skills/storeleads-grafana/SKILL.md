@@ -196,7 +196,11 @@ Give the total count separately; past 100 rows, point to Thomas for the full lis
   go on — answer on the most likely reading and say what you assumed.
 - Check every "×", "share of" or "% of" claim against the numbers before writing it. Fragmented = leader share
   under 20%; a leader at 20% or more is never "fragmented". Stack answers always show lift.
-- Answer in the person's language. In Vietnamese, write thousands with "." and decimals with "," (12.943; 5,4%).
+- Answer in the person's language. Vietnamese: 12.943 and 5,4%. English: 12,943 and 5.4%. Never mix in one answer.
+- Say "stores" only for distinct stores; a sum over categories or apps is "installs" (a store can count twice).
+  Whenever you cite a number of apps or countries, name the filter or the set (e.g. "apps with 100+ stores", "top 5 countries").
+- A report or one-page request: write one self-contained HTML file to `~/Downloads/storeleads-<topic>.html` (charts as
+  inline SVG, tables, caveats, the Source line) and give its path. If writing is blocked, put the full HTML in the chat.
 - When a standard dashboard shows the answer, add its link (folder StoreLeads, same data): App deep-dive
   `https://storedata.ecvision.ai/d/sl-app-<overview|growth|stack|competition|geo|merchants|churn>/?var-app=KEY`;
   Category overview `/d/sl-cat-<map|momentum|leaders|entrants|geo|stacks>/?var-l1=…&var-l2=…&var-category=…`.

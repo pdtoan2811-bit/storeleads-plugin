@@ -141,6 +141,7 @@ _Tìm category đông khách mà leader yếu, hoặc nhóm merchant chưa ai ph
 
 - "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
 - Nhóm Level 1 / Level 2 là cách nhóm tạm (draft) của team, không phải của Shopify.
+- Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 
 **Xem trên dashboard:** [Leaders](https://storedata.ecvision.ai/d/sl-cat-leaders)
 
@@ -166,6 +167,7 @@ _Tìm category đông khách mà leader yếu, hoặc nhóm merchant chưa ai ph
 
 - "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
 - Nhóm Level 1 / Level 2 là cách nhóm tạm (draft) của team, không phải của Shopify.
+- Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 
 **Xem trên dashboard:** [Map](https://storedata.ecvision.ai/d/sl-cat-map)
 

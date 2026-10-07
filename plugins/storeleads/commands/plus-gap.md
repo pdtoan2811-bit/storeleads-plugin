@@ -1,6 +1,6 @@
 ---
 description: Khoảng trống Shopify Plus (StoreLeads)
-allowed-tools: Skill, Read, mcp__plugin_storeleads_grafana
+allowed-tools: Skill, Read, Write(~/Downloads/storeleads-*), mcp__plugin_storeleads_grafana
 argument-hint: <category or idea>
 ---
 
@@ -12,8 +12,8 @@ Task: Plus stores with no app in the category, by country. Counts only — no li
 
 Run recipes 6 from the skill.
 If the subject is empty, ask for it in one short question. Otherwise never stop to ask: if a name fits several apps,
-take the one with the most stores, say so in one line, and go on. Run every recipe listed; if one fails or you
-skip it, say which. The audience is a teammate at Qikify / Ownego: no personal or project context beyond this data.
+take the one with the most stores, say so in one line, and go on. Run every recipe listed, every query in it; if one fails or
+you skip it, say which in one line. The audience is a teammate at Qikify / Ownego: no personal or project context beyond this data.
 
 Answer in the language the person writes in, in plain words for a non-technical reader. Quote numbers exactly as the
 queries return them, with the snapshot (Sep 2026). Say these caveats where they apply:

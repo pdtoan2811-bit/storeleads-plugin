@@ -36,7 +36,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### app-brief · /storeleads:competitor-brief
 
 - **Asked like:** "Write a competitor brief on Yotpo." · "Làm brief đối thủ cho Yotpo."
-- **Intent:** Run recipes 1, 3, 4, 5, 7 for one app and write a one-page brief in plain words; keep every caveat.
+- **Intent:** Run recipes 1, 3, 4, 5, 7 for one app (all of recipe 7, including where droppers went) and write a one-page brief in plain words; keep every caveat.
 - **Recipes:** 0, 1, 3, 4, 5, 7
 - **Caveats:** `latest`, `app-key`, `losses`, `crawl`
 - **Dashboard to link:** sl-app-overview (Overview → all tabs) — https://storedata.ecvision.ai/d/sl-app-overview
@@ -56,7 +56,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 - **Asked like:** "Which categories are crowded but have a weak or fragmented leader?" · "Category nào nhiều store dùng nhưng app dẫn đầu rating thấp hoặc chưa ai thống trị?"
 - **Intent:** Category leaders with share + rating. Rank only categories where the leader holds under 20% of stores OR is rated under 4.5; never call a leader at 20%+ fragmented.
 - **Recipes:** 8
-- **Caveats:** `latest`, `draft-group`
+- **Caveats:** `latest`, `draft-group`, `crawl`
 - **Dashboard to link:** sl-cat-leaders (Leaders) — https://storedata.ecvision.ai/d/sl-cat-leaders
 
 ### idea-check · /storeleads:app-idea-check
@@ -64,7 +64,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 - **Asked like:** "We're thinking of an upsell app. Is it worth it?" · "Mình định làm app upsell. Thị trường này có đáng làm không?"
 - **Intent:** Pick the matching categories and name them. Count apps and stores from app_month_agg at month 23. Then saturation, leader strength (share + rating per leader), newcomers, price points, Plus whitespace. Verdict by rule: go = leader under 20% or rated under 4.5 and newcomers gaining; no = a leader over 40% rated 4.7+; else maybe. State which rule fired.
 - **Recipes:** 3, 6, 8
-- **Caveats:** `latest`, `draft-group`
+- **Caveats:** `latest`, `draft-group`, `crawl`
 - **Dashboard to link:** sl-cat-map (Map) — https://storedata.ecvision.ai/d/sl-cat-map
 
 ### newcomers
@@ -78,8 +78,8 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### category-scan · /storeleads:category-scan
 
 - **Asked like:** "Scan the Marketing and conversion category for me." · "Quét giúp mình category Marketing and conversion."
-- **Intent:** Category door end to end over the WHOLE scope (expand a Level 1 / Level 2 name to all its leaves via references/categories.md): momentum vs market, leaders, fragmentation, entrants, Plus whitespace, stacks. If the scope is incomplete, say so first.
-- **Recipes:** 6, 8
+- **Intent:** Category door end to end over the WHOLE scope (expand a Level 1 / Level 2 name to all its leaves via references/categories.md): momentum vs market, leaders, fragmentation, entrants, Plus whitespace, and stacks (recipe 4 on the top 3 leaders). If the scope is incomplete, say so first.
+- **Recipes:** 4, 6, 8
 - **Caveats:** `latest`, `draft-group`, `crawl`
 - **Dashboard to link:** sl-cat-momentum (Momentum) — https://storedata.ecvision.ai/d/sl-cat-momentum
 

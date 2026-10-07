@@ -47,7 +47,8 @@ printf '{"grafana_token":"%s"}' "$TOKEN" | claude plugin configure storeleads@qi
   || die "Lưu token không được. Nhắn Toàn kèm ảnh chụp màn hình này."
 say "✓ Plugin StoreLeads đã cài, token lưu trong keychain"
 
-# 4 · pre-approve only this plugin's skill, its read-only Grafana tool and reading its own files, so non-technical
+# 4 · pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report pages
+# named ~/Downloads/storeleads-*, so non-technical
 # users never meet a permission prompt. Other permissions are left exactly as they were.
 SETTINGS="$HOME/.claude/settings.json"
 if command -v python3 >/dev/null; then
@@ -56,7 +57,7 @@ import json, os, sys
 p = sys.argv[1]
 s = json.load(open(p)) if os.path.exists(p) and os.path.getsize(p) else {}
 allow = s.setdefault("permissions", {}).setdefault("allow", [])
-for r in ["Skill(storeleads:*)", "mcp__plugin_storeleads_grafana", "Read(~/.claude/plugins/**)"]:
+for r in ["Skill(storeleads:*)", "mcp__plugin_storeleads_grafana", "Read(~/.claude/plugins/**)", "Write(~/Downloads/storeleads-*)"]:
     if r not in allow: allow.append(r)
 os.makedirs(os.path.dirname(p), exist_ok=True)
 json.dump(s, open(p, "w"), indent=2, ensure_ascii=False)
