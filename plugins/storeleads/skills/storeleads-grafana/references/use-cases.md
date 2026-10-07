@@ -44,7 +44,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### app-stack
 
 - **Asked like:** "Among stores running both Klaviyo and Judge.me, what else do they most often have?" · "Store dùng cả Klaviyo và Judge.me thì hay dùng thêm app gì?"
-- **Intent:** Order-free stack: companions of A (and of A+B). Never imply install order.
+- **Intent:** Order-free stack: companions of A (and of A+B) with share of stack AND lift (vs platform rate). Never imply install order or add shares across companions.
 - **Recipes:** 0, 4
 - **Caveats:** `latest`, `app-key`
 - **Dashboard to link:** sl-app-stack (Stack) — https://storedata.ecvision.ai/d/sl-app-stack
@@ -54,7 +54,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### gap
 
 - **Asked like:** "Which categories are crowded but have a weak or fragmented leader?" · "Category nào nhiều store dùng nhưng app dẫn đầu rating thấp hoặc chưa ai thống trị?"
-- **Intent:** Category leaders with share + rating; flag low leader share or low rating as whitespace.
+- **Intent:** Category leaders with share + rating. Rank only categories where the leader holds under 20% of stores OR is rated under 4.5; never call a leader at 20%+ fragmented.
 - **Recipes:** 8
 - **Caveats:** `latest`, `draft-group`
 - **Dashboard to link:** sl-cat-leaders (Leaders) — https://storedata.ecvision.ai/d/sl-cat-leaders
@@ -62,7 +62,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### idea-check · /storeleads:app-idea-check
 
 - **Asked like:** "We're thinking of an upsell app. Is it worth it?" · "Mình định làm app upsell. Thị trường này có đáng làm không?"
-- **Intent:** Pick the matching categories, then size, saturation, leader strength, newcomers, price points, Plus whitespace; end with a go/maybe/no verdict.
+- **Intent:** Pick the matching categories and name them. Count apps and stores from app_month_agg at month 23. Then saturation, leader strength (share + rating per leader), newcomers, price points, Plus whitespace. Verdict by rule: go = leader under 20% or rated under 4.5 and newcomers gaining; no = a leader over 40% rated 4.7+; else maybe. State which rule fired.
 - **Recipes:** 3, 6, 8
 - **Caveats:** `latest`, `draft-group`
 - **Dashboard to link:** sl-cat-map (Map) — https://storedata.ecvision.ai/d/sl-cat-map
@@ -78,7 +78,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### category-scan · /storeleads:category-scan
 
 - **Asked like:** "Scan the Marketing and conversion category for me." · "Quét giúp mình category Marketing and conversion."
-- **Intent:** Category door end to end: momentum vs market, leaders, fragmentation, entrants, Plus whitespace, stacks.
+- **Intent:** Category door end to end over the WHOLE scope (expand a Level 1 / Level 2 name to all its leaves via references/categories.md): momentum vs market, leaders, fragmentation, entrants, Plus whitespace, stacks. If the scope is incomplete, say so first.
 - **Recipes:** 6, 8
 - **Caveats:** `latest`, `draft-group`, `crawl`
 - **Dashboard to link:** sl-cat-momentum (Momentum) — https://storedata.ecvision.ai/d/sl-cat-momentum
@@ -106,9 +106,9 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### churn-where
 
 - **Asked like:** "When merchants drop Klaviyo, which email app do they switch to?" · "Khi bỏ Klaviyo, merchant chuyển sang app email nào nhiều nhất?"
-- **Intent:** Real drops (store still active) vs stores that left; destinations in the same category.
+- **Intent:** Real drops (store still active) vs stores that left; destinations in the SAME primary category only (an email app, not a form builder). Shares = switchers / real drops, checked against the table.
 - **Recipes:** 0, 7
-- **Caveats:** `losses`, `app-key`
+- **Caveats:** `losses`, `app-key`, `crawl`
 - **Dashboard to link:** sl-app-churn (Churn) — https://storedata.ecvision.ai/d/sl-app-churn
 
 ### churn-postmortem · /storeleads:churn-postmortem
@@ -157,9 +157,9 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 
 ### report
 
-- **Asked like:** "Turn the answers above into one report page." · "Gộp các câu trả lời ở trên thành một trang báo cáo gửi sếp."
-- **Intent:** Assemble earlier answers into one HTML artifact with charts, tables, caveats and a cite line (data + snapshot date).
-- **Recipes:** none — reuse the answers already in the chat
+- **Asked like:** "Make a one-page report on Klaviyo: size, growth, top countries." · "Turn the answers above into one report page." · "Làm một trang báo cáo về Klaviyo: quy mô, tăng trưởng, nước mạnh nhất, để gửi sếp." · "Gộp các câu trả lời ở trên thành một trang báo cáo gửi sếp."
+- **Intent:** One self-contained HTML page with charts, tables, caveats and a cite line (data + snapshot date): reuse answers already in this chat, or run the recipes the request names. Save it as a file and give its path.
+- **Recipes:** 1, 5
 - **Caveats:** `licence`, `latest`
 
 ### store-list

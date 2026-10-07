@@ -57,7 +57,7 @@ Claude luôn kèm lưu ý (caveat) khi số liệu có giới hạn, hãy giữ 
 | Claude không dùng dữ liệu StoreLeads | Gõ `/plugin`, kiểm tra storeleads đang **enabled**; hỏi rõ "theo dữ liệu StoreLeads…" |
 | Câu trả lời có vẻ sai | Chụp màn hình gửi Toàn |
 
-Dashboard đầy đủ (không cần Claude): https://storedata.ecvision.ai (đăng nhập bằng Slack), thư mục **StoreLeads**.
+Dashboard (không cần Claude, đăng nhập bằng Slack): **[bắt đầu ở đây](https://storedata.ecvision.ai/d/sl-app-overview)** cho một app, hoặc [bản đồ category](https://storedata.ecvision.ai/d/sl-cat-map) cho cả thị trường. Thanh tab trên cùng dẫn sang các trang còn lại.
 
 ---
 _Repo này được sinh tự động từ `qikifyStoreLeadsKnowledge` (`npm run plugin:build`). Đừng sửa trực tiếp ở đây._

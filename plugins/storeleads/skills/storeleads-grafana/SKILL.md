@@ -1,5 +1,6 @@
 ---
 name: storeleads-grafana
+allowed-tools: Read, mcp__plugin_storeleads_grafana, mcp__grafana
 description: Answer questions about Shopify apps and stores with the StoreLeads data through the Grafana MCP (storedata.ecvision.ai, datasource "StoreLeads ClickHouse", database slim). Use for any question about an app's install base, growth, Shopify Plus stores, competitors, app stacks, churn, countries, categories, new apps, merchants or store lists — "how many stores run X", "is X growing", "who competes with X", "what do X's merchants also use", "where do stores go after dropping X", "which category is heating up", "list Plus stores using X". Internal analysis only.
 ---
 
@@ -18,19 +19,23 @@ database `slim`. Read-only.
    "Last N days" counts back from the snapshot date **2026-09-27**, never from today's date.
    Data before Oct 2024 does not exist — say so, never guess.
 2. **Pick apps by `app_key`, never by name.** Names collide ("Product Reviews" is Shopify's own app). Resolve
-   first (recipe 0); if several apps fit, ask which one.
+   first (recipe 0). If one candidate has over 2× the stores of the next, or the name is a vendor brand ("Yotpo",
+   "Loox"), take the biggest, say which one in one line and name the others — don't stop to ask. Ask only when
+   no candidate clearly dominates.
 3. **`losses` counts stores that no longer have the app, INCLUDING stores that left the data** (closed, paused,
    not crawled). To count real uninstalls, use recipe 7 (drops while the store stays active).
 4. **One shop with several domains counts once**, so app store counts run 1–7% under StoreLeads' own figures.
    `app_month.installs` is StoreLeads' own number (every domain) — don't mix the two in one comparison.
 5. **Crawl artefacts:** Plus dips in Feb 2025 and Feb 2026, a store jump in Nov 2025, some apps jump in Sep 2026.
-   Don't read those months as real trends.
+   Don't read those months as real trends, and don't call Sep 2026 a clean end point when an app jumps there.
 6. **Categories:** use the app's `primary_category` (each install counts once, categories add up). Level 1 /
    Level 2 names ("Marketing and conversion", "Social trust"…) are a DRAFT grouping of those categories — look the
-   name up in `references/categories.md` and filter with the leaf list given there.
+   name up in `references/categories.md` (read the file; never fetch the map from a dashboard) and filter with the
+   leaf list given there. If the file can't be read, list the leaves with `query_sql` — never shrink a Level 1 / 2
+   scan to one leaf; if the scope is incomplete, say so in the first line.
    `category_month_agg` counts an app in every category it is LISTED under — don't sum it across categories.
 7. **Licence:** internal analysis only (StoreLeads ToS §2). Never export store lists for outreach. Show at most
-   100 stores (500 if asked); for a full list say: *"DM Thomas on Slack with these filters"*.
+   100 stores (500 if asked); for a full list say: *"DM Toàn (Thomas) on Slack with these filters"*.
 8. Never use the tables `stg_*`, `land`, `mv_*`, `loaded_months` or anything outside `slim`.
 
 ## Working rules
@@ -48,7 +53,7 @@ database `slim`. Read-only.
 - **A generic word is not an app.** "the reviews app", "an email app", "upsell" name a category, not one app:
   list the top 3–5 candidates (recipe 0) and ask which one. Answer only when the app is unambiguous.
 - **Store lists stop at the cap.** Never give a query, a method or a workaround for pulling the full list — the
-  only route to more rows is *"DM Thomas on Slack with these filters"*.
+  only route to more rows is *"DM Toàn (Thomas) on Slack with these filters"*.
 - **Counting stores (platform totals, Plus, by country):** use `store_dim` — `countIf(bitTest(active_months, 23))`,
   `countIf(bitTest(plus_months, 23))`. Don't rebuild store totals from the `*_agg` tables.
 
@@ -187,6 +192,11 @@ Give the total count separately; past 100 rows, point to Thomas for the full lis
 ## How to answer
 
 - Resolve names first; quote numbers exactly as returned, with the month they refer to.
+- Run every step the question needs; if you skip one, say which. Don't end on a question unless you truly can't
+  go on — answer on the most likely reading and say what you assumed.
+- Check every "×", "share of" or "% of" claim against the numbers before writing it. Fragmented = leader share
+  under 20%; a leader at 20% or more is never "fragmented". Stack answers always show lift.
+- Answer in the person's language. In Vietnamese, write thousands with "." and decimals with "," (12.943; 5,4%).
 - When a standard dashboard shows the answer, add its link (folder StoreLeads, same data): App deep-dive
   `https://storedata.ecvision.ai/d/sl-app-<overview|growth|stack|competition|geo|merchants|churn>/?var-app=KEY`;
   Category overview `/d/sl-cat-<map|momentum|leaders|entrants|geo|stacks>/?var-l1=…&var-l2=…&var-category=…`.

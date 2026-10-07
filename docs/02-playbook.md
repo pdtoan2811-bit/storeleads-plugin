@@ -300,6 +300,7 @@ _Store bỏ app thì đi đâu, tỷ lệ bỏ bao nhiêu, phân biệt gỡ th�
 
 - "Mất store" gồm cả store đóng cửa/rời dữ liệu, không chỉ gỡ app. Muốn số gỡ thật, hỏi rõ "gỡ app thật".
 - Tên app hay trùng nhau. Nếu Claude hỏi lại "ý bạn là app nào", hãy chọn đúng app.
+- Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 
 **Xem trên dashboard:** [Churn](https://storedata.ecvision.ai/d/sl-app-churn)
 
@@ -437,9 +438,12 @@ _Một trang tổng hợp gửi được cho sếp hoặc đối tác nội bộ
 
 **Hỏi như này:**
 
+> Làm một trang báo cáo về Klaviyo: quy mô, tăng trưởng, nước mạnh nhất, để gửi sếp.
 > Gộp các câu trả lời ở trên thành một trang báo cáo gửi sếp.
 
 <details><summary>English</summary>
+
+> Make a one-page report on Klaviyo: size, growth, top countries.
 
 > Turn the answers above into one report page.
 
