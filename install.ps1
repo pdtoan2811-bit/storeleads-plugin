@@ -48,14 +48,6 @@ function Install-StoreLeads {
   Set-Content -Path (Join-Path $HOME '.claude\storeleads-uvx') -Value $uvx -Encoding ASCII
   Say '✓ Kết nối Grafana sẵn sàng'
 
-  # 3 · Claude Code must be new enough to save plugin settings (`claude plugin configure`); update it if not
-  claude plugin configure --help *> $null
-  if ($LASTEXITCODE -ne 0) {
-    Say '… Cập nhật Claude Code (bản trên máy quá cũ)'
-    claude update *> $null
-    claude plugin configure --help *> $null
-    if ($LASTEXITCODE -ne 0) { Fail 'Claude Code quá cũ và tự cập nhật không được. Chạy: claude update  (cài qua npm thì: npm i -g @anthropic-ai/claude-code@latest), rồi chạy lại dòng cài.'; return }
-  }
   Say ('✓ Claude Code ' + ((claude --version 2>$null | Select-Object -First 1) -split ' ')[0])
 
   # 4 · plugin (public repo → HTTPS, no GitHub account needed)
@@ -69,12 +61,9 @@ function Install-StoreLeads {
   claude plugin install storeleads@qikify *> $null
   claude plugin update storeleads@qikify *> $null   # install is a no-op when already installed
   claude plugin enable storeleads@qikify *> $null
-  $values = @{ grafana_token = $Token; uvx_path = $uvx } | ConvertTo-Json -Compress
-  $values | claude plugin configure storeleads@qikify --values-stdin *> $null
-  if ($LASTEXITCODE -ne 0) { Fail 'Lưu token không được. Nhắn Toàn kèm ảnh chụp màn hình này.'; return }
-  Say '✓ Plugin StoreLeads đã cài, token lưu an toàn'
+  Say '✓ Plugin StoreLeads đã cài'
 
-  # 5 · pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report
+  # 5 · settings: token + uvx path as env vars; pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report
   # pages named ~/Downloads/storeleads-*; wait up to 2 min for the connector to start. Nothing else is touched.
   try {
     $p = Join-Path $HOME '.claude\settings.json'
@@ -88,10 +77,13 @@ function Install-StoreLeads {
     $s.permissions.allow = @($allow | Where-Object { $_ -ne 'Write(~/Downloads/storeleads-*)' })
     if (-not $s.PSObject.Properties['env']) { $s | Add-Member env ([pscustomobject]@{}) }
     if (-not $s.env.PSObject.Properties['MCP_TIMEOUT']) { $s.env | Add-Member MCP_TIMEOUT '120000' }
+    # the token + uvx path the connector reads (works on every Claude Code version; `plugin configure` needs 2.1.285+)
+    $s.env | Add-Member -Force STORELEADS_GRAFANA_TOKEN $Token
+    $s.env | Add-Member -Force STORELEADS_UVX $uvx
     $json = $s | ConvertTo-Json -Depth 50
     [IO.File]::WriteAllText($p, $json, (New-Object Text.UTF8Encoding $false))
-    Say '✓ Đã cho phép plugin chạy không cần hỏi'
-  } catch { Write-Host '  (bỏ qua bước cấp quyền — Claude Code sẽ hỏi quyền lần đầu, cứ chọn Yes)' }
+    Say '✓ Token và quyền đã lưu vào cài đặt Claude Code'
+  } catch { Fail 'Không ghi được cài đặt vào ~/.claude/settings.json. Nhắn Toàn kèm ảnh chụp màn hình này.'; return }
 
   Write-Host ''
   Say 'Xong! Mở lại Claude Code (gõ: claude) và hỏi thử:'

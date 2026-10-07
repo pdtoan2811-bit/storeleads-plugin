@@ -53,7 +53,7 @@ Không. Số liệu chỉ dùng nội bộ. Trong slide nội bộ, luôn ghi m�
 
 ### Token của tôi có an toàn không? Tôi có làm hỏng dữ liệu được không?
 
-Token chỉ đọc, không sửa hay xoá được gì. Token nằm trong keychain của máy bạn. Đừng gửi token cho ai, đừng dán vào chat hay vào tài liệu. Nếu lỡ lộ, nhắn Toàn để đổi token.
+Token chỉ đọc, không sửa hay xoá được gì. Token được lưu trong file cài đặt của Claude Code trên máy bạn (~/.claude/settings.json). Đừng gửi token cho ai, đừng dán vào chat hay vào tài liệu. Nếu lỡ lộ, nhắn Toàn để đổi token.
 
 ### Dùng được trên claude.ai (bản web) không?
 

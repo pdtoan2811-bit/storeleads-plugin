@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "grafana": {
-      "command": "${user_config.uvx_path}",
+      "command": "${STORELEADS_UVX:-uvx}",
       "args": [
         "mcp-grafana@2.0.1",
         "--enabled-tools",
@@ -11,7 +11,7 @@
       ],
       "env": {
         "GRAFANA_URL": "https://storedata.ecvision.ai",
-        "GRAFANA_SERVICE_ACCOUNT_TOKEN": "${user_config.grafana_token}"
+        "GRAFANA_SERVICE_ACCOUNT_TOKEN": "${STORELEADS_GRAFANA_TOKEN}"
       }
     }
   }

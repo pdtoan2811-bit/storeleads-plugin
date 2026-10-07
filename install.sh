@@ -42,13 +42,6 @@ say "… Tải kết nối Grafana (lần đầu có thể mất 1–2 phút)"
 "$UVX" mcp-grafana@2.0.1 --version >/dev/null 2>&1 || die "Tải kết nối Grafana không được. Kiểm tra mạng rồi chạy lại dòng cài."
 say "✓ Kết nối Grafana sẵn sàng"
 
-# 3 · Claude Code must be new enough to save plugin settings (`claude plugin configure`); update it if not
-if ! claude plugin configure --help >/dev/null 2>&1; then
-  say "… Cập nhật Claude Code (bản trên máy quá cũ)"
-  claude update >/dev/null 2>&1 || true
-  hash -r 2>/dev/null
-  claude plugin configure --help >/dev/null 2>&1 || die "Claude Code quá cũ và tự cập nhật không được. Chạy: claude update   (cài qua npm thì: npm i -g @anthropic-ai/claude-code@latest), rồi chạy lại dòng cài."
-fi
 say "✓ Claude Code $(claude --version 2>/dev/null | head -1 | cut -d' ' -f1)"
 
 # 4 · plugin (public repo → HTTPS, no GitHub account needed)
@@ -61,29 +54,30 @@ fi
 claude plugin install storeleads@qikify >/dev/null 2>&1 || true
 claude plugin update storeleads@qikify >/dev/null 2>&1 || true   # install is a no-op when already installed
 claude plugin enable storeleads@qikify >/dev/null 2>&1 || true
-printf '{"grafana_token":"%s","uvx_path":"%s"}' "$TOKEN" "$UVX" | claude plugin configure storeleads@qikify --values-stdin >/dev/null \
-  || die "Lưu token không được. Nhắn Toàn kèm ảnh chụp màn hình này."
-say "✓ Plugin StoreLeads đã cài, token lưu trong keychain"
+say "✓ Plugin StoreLeads đã cài"
 
-# 5 · pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report pages
-# named ~/Downloads/storeleads-*, so non-technical
-# users never meet a permission prompt. Other permissions are left exactly as they were.
+# 5 · settings (~/.claude/settings.json): the token + uvx path as env vars the plugin's connector reads (works on every
+# Claude Code version and channel; `claude plugin configure` needs 2.1.285+), a 2-min MCP start window, and pre-approval
+# of only this plugin's skill, read-only Grafana tool, its own files and report pages ~/Downloads/storeleads-*.
 SETTINGS="$HOME/.claude/settings.json"
-if command -v python3 >/dev/null; then
-  python3 - "$SETTINGS" <<'PY' || echo "  (bỏ qua bước cấp quyền — Claude Code sẽ hỏi quyền lần đầu, cứ chọn Yes)"
+PY="python3"; python3 -c 1 >/dev/null 2>&1 || PY="$(dirname "$UVX")/uv run --no-project --quiet python"
+STORELEADS_TOKEN_VALUE="$TOKEN" STORELEADS_UVX_VALUE="$UVX" $PY - "$SETTINGS" <<'PYCODE' || die "Không ghi được cài đặt vào ~/.claude/settings.json. Nhắn Toàn kèm ảnh chụp màn hình này."
 import json, os, sys
 p = sys.argv[1]
 s = json.load(open(p)) if os.path.exists(p) and os.path.getsize(p) else {}
+env = s.setdefault("env", {})
+env["STORELEADS_GRAFANA_TOKEN"] = os.environ["STORELEADS_TOKEN_VALUE"]
+env["STORELEADS_UVX"] = os.environ["STORELEADS_UVX_VALUE"]
+env.setdefault("MCP_TIMEOUT", "120000")
 allow = s.setdefault("permissions", {}).setdefault("allow", [])
-s.setdefault("env", {}).setdefault("MCP_TIMEOUT", "120000")   # slow machines / networks: wait up to 2 min for MCP start
 for r in ["Skill(storeleads:*)", "mcp__plugin_storeleads_grafana", "Read(~/.claude/plugins/**)", "Edit(~/Downloads/storeleads-*)"]:
     if r not in allow: allow.append(r)
 allow[:] = [r for r in allow if r != "Write(~/Downloads/storeleads-*)"]   # an earlier, ineffective form
 os.makedirs(os.path.dirname(p), exist_ok=True)
 json.dump(s, open(p, "w"), indent=2, ensure_ascii=False)
-PY
-  say "✓ Đã cho phép plugin chạy không cần hỏi"
-fi
+os.chmod(p, 0o600)
+PYCODE
+say "✓ Token và quyền đã lưu vào cài đặt Claude Code"
 
 echo
 say "Xong! Mở lại Claude Code (gõ: claude) và hỏi thử:"
