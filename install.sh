@@ -42,7 +42,16 @@ say "… Tải kết nối Grafana (lần đầu có thể mất 1–2 phút)"
 "$UVX" mcp-grafana@2.0.1 --version >/dev/null 2>&1 || die "Tải kết nối Grafana không được. Kiểm tra mạng rồi chạy lại dòng cài."
 say "✓ Kết nối Grafana sẵn sàng"
 
-# 3 · plugin (public repo → HTTPS, no GitHub account needed)
+# 3 · Claude Code must be new enough to save plugin settings (`claude plugin configure`); update it if not
+if ! claude plugin configure --help >/dev/null 2>&1; then
+  say "… Cập nhật Claude Code (bản trên máy quá cũ)"
+  claude update >/dev/null 2>&1 || true
+  hash -r 2>/dev/null
+  claude plugin configure --help >/dev/null 2>&1 || die "Claude Code quá cũ và tự cập nhật không được. Chạy: claude update   (cài qua npm thì: npm i -g @anthropic-ai/claude-code@latest), rồi chạy lại dòng cài."
+fi
+say "✓ Claude Code $(claude --version 2>/dev/null | head -1 | cut -d' ' -f1)"
+
+# 4 · plugin (public repo → HTTPS, no GitHub account needed)
 export CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1
 if claude plugin marketplace list 2>/dev/null | grep -q "${REPO%%#*}"; then
   claude plugin marketplace update qikify >/dev/null 2>&1 || true
@@ -56,7 +65,7 @@ printf '{"grafana_token":"%s","uvx_path":"%s"}' "$TOKEN" "$UVX" | claude plugin 
   || die "Lưu token không được. Nhắn Toàn kèm ảnh chụp màn hình này."
 say "✓ Plugin StoreLeads đã cài, token lưu trong keychain"
 
-# 4 · pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report pages
+# 5 · pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report pages
 # named ~/Downloads/storeleads-*, so non-technical
 # users never meet a permission prompt. Other permissions are left exactly as they were.
 SETTINGS="$HOME/.claude/settings.json"

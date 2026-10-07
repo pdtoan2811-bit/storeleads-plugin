@@ -48,7 +48,17 @@ function Install-StoreLeads {
   Set-Content -Path (Join-Path $HOME '.claude\storeleads-uvx') -Value $uvx -Encoding ASCII
   Say '✓ Kết nối Grafana sẵn sàng'
 
-  # 3 · plugin (public repo → HTTPS, no GitHub account needed)
+  # 3 · Claude Code must be new enough to save plugin settings (`claude plugin configure`); update it if not
+  claude plugin configure --help *> $null
+  if ($LASTEXITCODE -ne 0) {
+    Say '… Cập nhật Claude Code (bản trên máy quá cũ)'
+    claude update *> $null
+    claude plugin configure --help *> $null
+    if ($LASTEXITCODE -ne 0) { Fail 'Claude Code quá cũ và tự cập nhật không được. Chạy: claude update  (cài qua npm thì: npm i -g @anthropic-ai/claude-code@latest), rồi chạy lại dòng cài.'; return }
+  }
+  Say ('✓ Claude Code ' + ((claude --version 2>$null | Select-Object -First 1) -split ' ')[0])
+
+  # 4 · plugin (public repo → HTTPS, no GitHub account needed)
   $env:CLAUDE_CODE_PLUGIN_PREFER_HTTPS = '1'
   $known = (claude plugin marketplace list 2>$null | Out-String)
   if ($known -match [regex]::Escape($Repo)) { claude plugin marketplace update qikify *> $null }
@@ -64,7 +74,7 @@ function Install-StoreLeads {
   if ($LASTEXITCODE -ne 0) { Fail 'Lưu token không được. Nhắn Toàn kèm ảnh chụp màn hình này.'; return }
   Say '✓ Plugin StoreLeads đã cài, token lưu an toàn'
 
-  # 4 · pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report
+  # 5 · pre-approve only this plugin's skill, its read-only Grafana tool, reading its own files and writing report
   # pages named ~/Downloads/storeleads-*; wait up to 2 min for the connector to start. Nothing else is touched.
   try {
     $p = Join-Path $HOME '.claude\settings.json'
