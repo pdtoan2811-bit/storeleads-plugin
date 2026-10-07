@@ -1,6 +1,6 @@
 ---
 description: App này tăng hay giảm (StoreLeads)
-allowed-tools: Skill, Read, Write(~/Downloads/storeleads-*), mcp__plugin_storeleads_grafana
+allowed-tools: Skill, Read, Edit(~/Downloads/storeleads-*), mcp__plugin_storeleads_grafana
 argument-hint: <app name>
 ---
 

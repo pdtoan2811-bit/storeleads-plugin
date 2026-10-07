@@ -57,8 +57,9 @@ import json, os, sys
 p = sys.argv[1]
 s = json.load(open(p)) if os.path.exists(p) and os.path.getsize(p) else {}
 allow = s.setdefault("permissions", {}).setdefault("allow", [])
-for r in ["Skill(storeleads:*)", "mcp__plugin_storeleads_grafana", "Read(~/.claude/plugins/**)", "Write(~/Downloads/storeleads-*)"]:
+for r in ["Skill(storeleads:*)", "mcp__plugin_storeleads_grafana", "Read(~/.claude/plugins/**)", "Edit(~/Downloads/storeleads-*)"]:
     if r not in allow: allow.append(r)
+allow[:] = [r for r in allow if r != "Write(~/Downloads/storeleads-*)"]   # an earlier, ineffective form
 os.makedirs(os.path.dirname(p), exist_ok=True)
 json.dump(s, open(p, "w"), indent=2, ensure_ascii=False)
 PY
