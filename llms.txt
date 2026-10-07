@@ -1,0 +1,25 @@
+# StoreLeads plugin (Qikify / Ownego)
+
+> Claude Code plugin + Vietnamese user guide for asking StoreLeads Shopify app/store data (24 monthly snapshots,
+> Oct 2024 → Sep 2026) through the team Grafana (https://storedata.ecvision.ai, read-only). Internal use only.
+
+## For an AI answering questions
+
+- [Skill: data rules + SQL recipes](plugins/storeleads/skills/storeleads-grafana/SKILL.md)
+- [Use cases: intent → recipes → caveats](plugins/storeleads/skills/storeleads-grafana/references/use-cases.md)
+- [Category map (draft Level 1 / Level 2)](plugins/storeleads/skills/storeleads-grafana/references/categories.md)
+- [Command /storeleads:competitor-brief](plugins/storeleads/commands/competitor-brief.md)
+- [Command /storeleads:app-idea-check](plugins/storeleads/commands/app-idea-check.md)
+- [Command /storeleads:category-scan](plugins/storeleads/commands/category-scan.md)
+- [Command /storeleads:growth-check](plugins/storeleads/commands/growth-check.md)
+- [Command /storeleads:churn-postmortem](plugins/storeleads/commands/churn-postmortem.md)
+- [Command /storeleads:plus-gap](plugins/storeleads/commands/plus-gap.md)
+
+## User guide (Vietnamese)
+
+- [Install](README.md)
+- [01-cach-hoi](docs/01-cach-hoi.md)
+- [02-playbook](docs/02-playbook.md)
+- [03-doc-so-cho-dung](docs/03-doc-so-cho-dung.md)
+- [04-dashboard](docs/04-dashboard.md)
+- [05-su-co](docs/05-su-co.md)

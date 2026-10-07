@@ -9,39 +9,34 @@ StoreLeads (24 snapshot theo tháng, 10/2024 → 9/2026) qua Grafana của team,
 > ⚠️ **Chỉ dùng nội bộ.** Không xuất danh sách store để đi outreach, không công bố số liệu ra ngoài (điều khoản
 > StoreLeads §2).
 
-## Cài đặt (khoảng 5 phút, làm một lần)
+## Cài đặt (2 bước, khoảng 2 phút)
 
-Cần: **Claude Code** (app terminal `claude`). Bản web claude.ai chưa dùng được, sẽ có sau.
+Cần có **Claude Code** (app terminal `claude`). Bản web claude.ai chưa dùng được, sẽ có sau.
 
-**1. Xin token.** Nhắn Toàn hoặc Đức trên Slack: "cho mình xin token Grafana StoreLeads". Token là một chuỗi
-bắt đầu bằng `glsa_`. Đừng gửi token này cho ai khác.
+**1. Xin token.** Nhắn Toàn hoặc Đức trên Slack: "cho mình xin token StoreLeads". Token bắt đầu bằng `glsa_`.
+Đừng gửi token này cho ai khác.
 
-**2. Cài `uv`** (công cụ để chạy kết nối Grafana). Mở Terminal, dán:
+**2. Mở Terminal, dán dòng này rồi Enter.** Khi được hỏi, dán token vào (chữ sẽ không hiện ra, cứ dán rồi Enter):
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.sh | bash
 ```
 
-Đóng Terminal rồi mở lại.
-
-**3. Thêm plugin.** Mở Claude Code (`claude`), gõ lần lượt:
-
-```
-/plugin marketplace add pdtoan2811-bit/storeleads-plugin
-/plugin install storeleads@qikify
-```
-
-Claude Code sẽ hỏi **Grafana token**: dán token ở bước 1 vào. Token được lưu trong keychain của máy, không nằm
-trong file nào.
-
-**4. Bật tự cập nhật** (để luôn có bản mới nhất): gõ `/plugin` → tab **Marketplaces** → chọn **qikify** →
-**Enable auto-update**.
-
-**5. Khởi động lại Claude Code** và hỏi thử:
+Xong. Mở lại Claude Code (`claude`) và hỏi thử:
 
 ```
 Klaviyo đang có bao nhiêu store, và bao nhiêu % trong số đó là Shopify Plus?
 ```
+
+Plugin tự cập nhật mỗi ngày, không cần làm gì thêm. Đổi token: chạy lại dòng ở bước 2.
+
+## Hướng dẫn chi tiết
+
+1. [Cách hỏi để có câu trả lời tốt](docs/01-cach-hoi.md)
+2. [Playbook theo việc](docs/02-playbook.md): 18 việc thường gặp, mỗi việc có câu mẫu để copy
+3. [Đọc số cho đúng](docs/03-doc-so-cho-dung.md)
+4. [Dùng dashboard Grafana](docs/04-dashboard.md)
+5. [Sự cố & câu hỏi thường gặp](docs/05-su-co.md)
 
 ## Hỏi gì cũng được, ví dụ
 
@@ -57,8 +52,8 @@ Claude luôn kèm lưu ý (caveat) khi số liệu có giới hạn, hãy giữ 
 
 | Triệu chứng | Cách sửa |
 |---|---|
-| `uvx: command not found` | Làm lại bước 2, rồi mở Terminal mới |
-| Lỗi 401 / unauthorized | Token sai hoặc hết hạn: `/plugin` → storeleads → cấu hình lại token |
+| Lỗi khi cài | Chạy lại dòng ở bước 2; vẫn lỗi thì chụp màn hình gửi Toàn |
+| Lỗi 401 / unauthorized | Token sai hoặc hết hạn: xin token mới, chạy lại dòng ở bước 2 |
 | Claude không dùng dữ liệu StoreLeads | Gõ `/plugin`, kiểm tra storeleads đang **enabled**; hỏi rõ "theo dữ liệu StoreLeads…" |
 | Câu trả lời có vẻ sai | Chụp màn hình gửi Toàn |
 

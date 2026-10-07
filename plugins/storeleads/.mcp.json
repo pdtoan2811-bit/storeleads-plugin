@@ -1,13 +1,9 @@
 {
   "mcpServers": {
     "grafana": {
-      "command": "uvx",
+      "command": "bash",
       "args": [
-        "mcp-grafana",
-        "--enabled-tools",
-        "search,datasource,dashboard,folder,navigation,sql",
-        "--disable-write",
-        "--enable-query"
+        "${CLAUDE_PLUGIN_ROOT}/scripts/grafana-mcp.sh"
       ],
       "env": {
         "GRAFANA_URL": "https://storedata.ecvision.ai",

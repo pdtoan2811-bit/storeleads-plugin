@@ -1,0 +1,22 @@
+---
+description: Brief đối thủ một trang (StoreLeads)
+argument-hint: <app name>
+---
+
+Use the storeleads-grafana skill (use case `app-brief` in its references/use-cases.md).
+
+Subject: $ARGUMENTS
+
+Task: Run recipes 1, 3, 4, 5, 7 for one app and write a one-page brief in plain words; keep every caveat.
+
+Run recipes 0, 1, 3, 4, 5, 7 from the skill (recipe 0 first: resolve the app; if the name is ambiguous, ask which one).
+If the subject is empty, ask for it in one short question.
+
+Answer in the language the person writes in, in plain words for a non-technical reader. Quote numbers exactly as the
+queries return them, with the snapshot (Sep 2026). Say these caveats where they apply:
+- "Now" is the latest snapshot (month 23, Sep 2026); "last N days" counts back from 2026-09-27.
+- Resolve apps to app_key first; ask when a name is ambiguous.
+- losses include stores that left the data; real uninstalls = recipe 7 dropped_app (store still active).
+- Crawl artefacts: Plus dips Feb 2025 / Feb 2026, store jump Nov 2025, some app spikes Sep 2026 — flag them.
+
+End with a link to the dashboard: https://storedata.ecvision.ai/d/sl-app-overview and offer to turn the answer into one shareable HTML page.

@@ -39,7 +39,8 @@ database `slim`. Read-only.
   Never hand SQL back to the person or end on "let me run this". If a query errors, read the error, fix it, run
   again; after 3 failed tries, answer with what you have and say what failed.
 - **Start from a recipe below** and change only the CAPS values — they are tested. One or two queries answer
-  almost every question.
+  almost every question. Briefs, scans, checks, post-mortems and report pages are taught to the team as use cases:
+  `references/use-cases.md` maps each to its recipes, caveats and answer shape.
 - **Let SQL do the arithmetic.** Totals over months, differences, shares, averages: compute them in the query
   (`sum`, `sumIf`, `/`), never add up rows by hand.
 - **Store counts, not installs.** Sizes, ranks, shares and growth use `stores` from `app_month_agg`.
