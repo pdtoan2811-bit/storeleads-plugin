@@ -1,7 +1,7 @@
 {
   "name": "storeleads",
   "displayName": "StoreLeads",
-  "version": "1.0.0-c20fb87c",
+  "version": "1.0.0-45fb1e70",
   "description": "StoreLeads Shopify app & store data (24 monthly snapshots) through the team Grafana: installs, growth, Plus, competitors, stacks, churn, categories. Internal use only.",
   "author": {
     "name": "Qikify / Ownego"
@@ -19,6 +19,12 @@
       "sensitive": true,
       "required": true,
       "description": "Read-only token for storedata.ecvision.ai. Ask Toàn or Đức on Slack."
+    },
+    "uvx_path": {
+      "type": "string",
+      "title": "uvx path",
+      "default": "uvx",
+      "description": "Full path to uvx (set by the installer). Leave as uvx if it is on your PATH."
     }
   }
 }
