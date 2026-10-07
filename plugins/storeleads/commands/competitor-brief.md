@@ -1,6 +1,6 @@
 ---
 description: Brief đối thủ một trang (StoreLeads)
-allowed-tools: Read, mcp__plugin_storeleads_grafana
+allowed-tools: Skill, Read, mcp__plugin_storeleads_grafana
 argument-hint: <app name>
 ---
 

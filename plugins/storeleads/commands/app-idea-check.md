@@ -1,6 +1,6 @@
 ---
 description: Kiểm tra một ý tưởng app (StoreLeads)
-allowed-tools: Read, mcp__plugin_storeleads_grafana
+allowed-tools: Skill, Read, mcp__plugin_storeleads_grafana
 argument-hint: <category or idea>
 ---
 
