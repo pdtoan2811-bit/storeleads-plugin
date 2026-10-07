@@ -38,7 +38,7 @@ Plugin tự cập nhật mỗi ngày, không cần làm gì thêm. Đổi token:
 1. [Cách hỏi để có câu trả lời tốt](docs/01-cach-hoi.md)
 2. [Playbook theo việc](docs/02-playbook.md): 18 việc thường gặp, mỗi việc có câu mẫu để copy
 3. [Đọc số cho đúng](docs/03-doc-so-cho-dung.md)
-4. [Dùng dashboard Grafana](docs/04-dashboard.md)
+4. [Dùng dashboard Grafana](docs/04-dashboard.md): 9 bước có ảnh, từ chọn app đến khoanh vùng category
 5. [Sự cố & câu hỏi thường gặp](docs/05-su-co.md)
 
 ## Hỏi gì cũng được, ví dụ
