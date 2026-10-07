@@ -24,7 +24,6 @@ Dashboard chia thành hai cửa. Mỗi cửa có một dải tab ở đầu tran
 
 ### Cửa 1: App deep-dive (xem một app)
 
-![Overview](img/sl-app-overview.png)
 
 | Tab | Trả lời câu hỏi gì | Điều khiển chính |
 |---|---|---|
@@ -36,23 +35,18 @@ Dashboard chia thành hai cửa. Mỗi cửa có một dải tab ở đầu tran
 | Merchants | Merchant của app là ai: theme, store mới mở, danh sách ngắn | Chọn app |
 | Churn | Store bỏ app thì đi đâu, gỡ thật hay store rời dữ liệu | Chọn app |
 
-![Growth](img/sl-app-growth.png)
 
 Tab **Stack** cho thấy các app đi cùng, xếp thành bảng xếp hạng. Chọn thêm một app ở "And also has" để xem những store có cả hai còn dùng gì. Đây là quan hệ "đi cùng nhau", không nói gì về thứ tự cài.
 
-![Stack](img/sl-app-stack.png)
 
 Tab **Competition** so số store bây giờ với một mốc trong quá khứ.
 
-![Competition](img/sl-app-competition.png)
 
 Tab **Churn** tách "gỡ app thật" khỏi "store rời dữ liệu" và chỉ ra app mà người bỏ app đã chuyển sang.
 
-![Churn](img/sl-app-churn.png)
 
 ### Cửa 2: Category overview (xem một ngành hàng)
 
-![Map](img/sl-cat-map.png)
 
 | Tab | Trả lời câu hỏi gì |
 |---|---|
