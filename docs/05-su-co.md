@@ -7,6 +7,7 @@ Trang này giúp bạn tự gỡ các lỗi hay gặp trước khi nhắn Toàn.
 | Triệu chứng | Cách sửa |
 |---|---|
 | Lỗi khi cài | Chạy lại dòng cài ở [trang cài đặt](../README.md). Vẫn lỗi: chụp màn hình gửi Toàn. |
+| "Không có bàn phím để hỏi token" | Bạn đang chạy trong Claude/Orca. Dán token vào cuối lệnh: `… install.sh \| bash -s -- <token>` |
 | Lỗi 401 / unauthorized | Token sai hoặc hết hạn. Xin token mới (nhắn Toàn hoặc Đức), rồi chạy lại dòng cài: nó sẽ hỏi token mới. |
 | Claude không dùng dữ liệu StoreLeads | Gõ `/plugin`, xem storeleads có ở trạng thái **enabled** không. Thử hỏi "theo dữ liệu StoreLeads, …" |
 | Plugin bị tắt (disabled) | Chạy lại dòng cài, rồi mở lại Claude Code. |

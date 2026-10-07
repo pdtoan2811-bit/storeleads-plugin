@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # StoreLeads cho Claude — cài bằng một dòng:
 #   curl -fsSL https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.sh | bash
+# Without a keyboard prompt (run inside Claude Code, Orca, CI): pass the token as an argument —
+#   curl -fsSL …/install.sh | bash -s -- <token>
+# (an argument survives where an env var named *TOKEN* may be stripped by a sandbox).
 # Script sẽ hỏi token (nhắn Toàn hoặc Đức để xin). Chạy lại bất cứ lúc nào để đổi token hoặc sửa cài đặt.
 # Source: qikifyStoreLeadsKnowledge/plugin/install.sh (copied by npm run plugin:build) — edit there.
 set -euo pipefail
@@ -13,10 +16,11 @@ die() { printf '\033[31m✗ %s\033[0m\n' "$*" >&2; exit 1; }
 command -v claude >/dev/null || die "Chưa có Claude Code. Cài trước: https://claude.com/claude-code rồi chạy lại dòng này."
 command -v git >/dev/null || die "Máy chưa có git. Trên Mac: chạy 'xcode-select --install', xong chạy lại dòng này."
 
-# 1 · token: STORELEADS_TOKEN if set, otherwise ask (read from the terminal, since stdin is this script)
-TOKEN="${STORELEADS_TOKEN:-}"
+# 1 · token: first argument, else STORELEADS_TOKEN, else ask (read from the terminal, since stdin is this script)
+TOKEN="${1:-${STORELEADS_TOKEN:-}}"
 if [ -z "$TOKEN" ]; then
-  [ -r /dev/tty ] || die "Không hỏi được token. Chạy: STORELEADS_TOKEN=<token> bash install.sh"
+  { : </dev/tty; } 2>/dev/null || die "Không có bàn phím để hỏi token (đang chạy trong Claude/Orca?). Dán token vào cuối lệnh:
+  curl -fsSL https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.sh | bash -s -- <token>"
   printf 'Dán token Grafana StoreLeads (bắt đầu bằng glsa_), rồi Enter: '
   IFS= read -rs TOKEN </dev/tty; echo
 fi

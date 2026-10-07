@@ -30,6 +30,9 @@ Klaviyo đang có bao nhiêu store, và bao nhiêu % trong số đó là Shopify
 
 Plugin tự cập nhật mỗi ngày, không cần làm gì thêm. Đổi token: chạy lại dòng ở bước 2.
 
+> Chạy trong Claude, Orca hay một app không có ô nhập? Dán token vào cuối lệnh thay vì đợi được hỏi:
+> `curl -fsSL https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.sh | bash -s -- <token>`
+
 ## Hướng dẫn chi tiết
 
 1. [Cách hỏi để có câu trả lời tốt](docs/01-cach-hoi.md)
