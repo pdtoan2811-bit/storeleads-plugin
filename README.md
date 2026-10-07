@@ -16,10 +16,18 @@ Cần có **Claude Code** (app terminal `claude`). Bản web claude.ai chưa dù
 **1. Xin token.** Nhắn Toàn hoặc Đức trên Slack: "cho mình xin token StoreLeads". Token bắt đầu bằng `glsa_`.
 Đừng gửi token này cho ai khác.
 
-**2. Mở Terminal, dán dòng này rồi Enter.** Khi được hỏi, dán token vào (chữ sẽ không hiện ra, cứ dán rồi Enter):
+**2. Dán một dòng, rồi Enter.** Khi được hỏi, dán token vào (chữ sẽ không hiện ra, cứ dán rồi Enter).
+
+**Mac** — mở app **Terminal**:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.sh | bash
+```
+
+**Windows** — mở **PowerShell** (không dùng bash/WSL):
+
+```powershell
+irm https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.ps1 | iex
 ```
 
 Xong. Mở lại Claude Code (`claude`) và hỏi thử:
@@ -28,10 +36,11 @@ Xong. Mở lại Claude Code (`claude`) và hỏi thử:
 Klaviyo đang có bao nhiêu store, và bao nhiêu % trong số đó là Shopify Plus?
 ```
 
-Plugin tự cập nhật mỗi ngày, không cần làm gì thêm. Đổi token: chạy lại dòng ở bước 2.
+Plugin tự cập nhật mỗi ngày, không cần làm gì thêm. Đổi token hoặc cài lỗi: chạy lại dòng ở bước 2.
 
 > Chạy trong Claude, Orca hay một app không có ô nhập? Dán token vào cuối lệnh thay vì đợi được hỏi:
-> `curl -fsSL https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.sh | bash -s -- <token>`
+> - Mac: `curl -fsSL https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.sh | bash -s -- <token>`
+> - Windows: `& ([scriptblock]::Create((irm https://raw.githubusercontent.com/pdtoan2811-bit/storeleads-plugin/main/install.ps1))) <token>`
 
 ## Hướng dẫn chi tiết
 
