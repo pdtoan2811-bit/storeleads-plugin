@@ -63,13 +63,15 @@ def("legend", "items: [{label, tone, means}]", (b) => `<div class="legend">${b.i
 def("bigNumber", "n, text", (b) => `<div><div class="big num">${val(b.n)}</div><p class="lede">${md(b.text)}</p></div>`);
 def("details", "summary, text", (b) => `<details style="margin-top:14px"><summary>${esc(b.summary)} ›</summary><p style="font-size:13.5px">${md(b.text)}</p></details>`);
 def("card", "blocks: [...] — a white card around other blocks", (b) => `<div class="card">${renderBlocks(b.blocks)}</div>`);
-def("grid", "cols: [[blocks], [blocks]] — side by side, stacks on phones", (b) => `<div class="grid2">${b.cols.map((c) => `<div>${renderBlocks(c)}</div>`).join("")}</div>`);
+def("grid", "cols: [[blocks], [blocks]], align? (center) — side by side, stacks on phones", (b) => `<div class="grid2" style="${b.align === "center" ? "align-items:center" : ""}">${b.cols.map((c) => `<div>${renderBlocks(c)}</div>`).join("")}</div>`);
 def("twoCards", "lose: {title, text}, win: {title, text}", (b) => `<div class="two"><div class="card lose"><div class="eyebrow">⚔ ${esc(b.lose.title)}</div><p>${md(b.lose.text)}</p></div><div class="card win"><div class="eyebrow">🎯 ${esc(b.win.title)}</div><p>${md(b.win.text)}</p></div></div>`);
 def("moves", "groups: [{group, icon?, items: [{do, why}]}]", (b) => `<div class="moves">${b.groups.map((g) => `<div><div class="eyebrow" style="margin-bottom:8px">${esc(g.icon ?? "")} ${esc(g.group)}</div>${g.items.map((m) => `<div class="move"><b>${md(m.do)}</b><span>${L("vì", "because")} ${md(m.why)}</span></div>`).join("")}</div>`).join("")}</div>`);
 
-def("barList", "rows: [{label, v, note?, hi?, warn?, color?}], fmt?, mark?, markLabel?, color?", (b) => {
-  const M = Math.max(1, ...b.rows.map((r) => r.v ?? 0), b.mark ?? 0), f = (n) => (FMT[b.fmt ?? "int"] ?? nf)(n);
-  return `<div class="barlist">${b.rows.map((r) => `<div class="bl ${r.hi ? "hi" : ""}"><span class="bl-l">${esc(r.label)}</span><div class="bl-t"><i style="width:${(100 * Math.max(0, r.v ?? 0)) / M}%;background:${r.hi ? "var(--q)" : r.color ?? b.color ?? "#c3c7cd"}"></i>${b.mark != null ? `<b style="left:${(100 * b.mark) / M}%"></b>` : ""}</div><span class="bl-v num">${f(r.v)}</span>${r.warn ? `<span class="bl-n">${pill("warn", "⚠")}</span>` : r.note != null ? `<span class="bl-n">${md(r.note)}</span>` : ""}</div>`).join("")}${b.mark != null && b.markLabel ? `<div class="bl-mk">│ ${esc(b.markLabel)}</div>` : ""}</div>`;
+const note = (n) => (n && typeof n === "object" && n.pill ? pill(n.pill[0], esc(n.pill[1])) : md(n));
+def("barList", "rows: [{label, v (negative ok), note? (text or {pill:[tone,text]}), hi?, warn?, series? (24 → ⚠ when unsure), color?}], fmt?, mark?, markLabel?, color?", (b) => {
+  for (const r of b.rows) if (r.series && growth(r.series).warn) r.warn = true;
+  const M = Math.max(1, ...b.rows.map((r) => Math.abs(r.v ?? 0)), b.mark ?? 0), f = (n) => (FMT[b.fmt ?? "int"] ?? nf)(n);
+  return `<div class="barlist">${b.rows.map((r) => `<div class="bl ${r.hi ? "hi" : ""}"><span class="bl-l">${esc(r.label)}</span><div class="bl-t"><i style="width:${(100 * Math.abs(r.v ?? 0)) / M}%;background:${r.hi ? "var(--q)" : r.color ?? b.color ?? "#c3c7cd"}"></i>${b.mark != null ? `<b style="left:${(100 * b.mark) / M}%"></b>` : ""}</div><span class="bl-v num">${f(r.v)}</span>${r.warn ? `<span class="bl-n">${pill("warn", "⚠ " + L("chưa chắc", "unsure"))}</span>` : r.note != null ? `<span class="bl-n">${note(r.note)}</span>` : ""}</div>`).join("")}${b.mark != null && b.markLabel ? `<div class="bl-mk">│ ${esc(b.markLabel)}</div>` : ""}</div>`;
 });
 
 def("areaTrend", "name, vals: [24 monthly values]", (b) => {
@@ -164,6 +166,28 @@ def("table", "cols: [{label, align?: r|c}], rows: [{cells: [...], hi?}] — a ce
   return `<div class="scroll"><table style="min-width:640px"><thead><tr>${b.cols.map((c) => `<th class="${c.align ?? ""}">${esc(c.label)}</th>`).join("")}</tr></thead><tbody>${b.rows.map((r) => `<tr class="${r.hi ? "sel" : ""}">${r.cells.map((c, i) => `<td class="${b.cols[i]?.align ?? ""}">${cell(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 });
 
+// Our growth vs the category's: both indexed to 100 at month 0, plus the 12-month gap in points (robust growth both sides).
+def("vsCategory", "name, series: [24], catName, catSeries: [24 category installs] — indexed lines + 12- and 24-month gap", (b) => {
+  const v = b.series, c = b.catSeries, n = v.length - 1, W = 640, h = 240, Lp = 40, R = 130, T = 14, Bt = 26;
+  const ia = v.map((x) => (100 * x) / (v[0] || 1)), ic = c.map((x) => (100 * x) / (c[0] || 1));
+  const lo = Math.min(...ia, ...ic, 100) * 0.92, hi = Math.max(...ia, ...ic, 100) * 1.06;
+  const x = (m) => Lp + (m * (W - Lp - R)) / n, y = (q) => T + (h - T - Bt) * (1 - (q - lo) / (hi - lo)), bad = jumpMonths([v]);
+  const ga = growth(v), gc = growth(c), g24a = (100 * (v[n] - v[0])) / (v[0] || 1), g24c = (100 * (c[n] - c[0])) / (c[0] || 1);
+  let ya = y(ia[n]), yc = y(ic[n]); if (Math.abs(ya - yc) < 16) { if (ya < yc) yc = ya + 16; else ya = yc + 16; }
+  const chart = `<svg viewBox="0 0 ${W} ${h}" class="trend" role="img">${bad.map((q, m) => (q ? `<rect x="${x(m - 1)}" y="${T}" width="${x(m) - x(m - 1)}" height="${h - T - Bt}" fill="#fdf3dc"/>` : "")).join("")}
+<line x1="${Lp}" x2="${W - R}" y1="${y(100)}" y2="${y(100)}" stroke="#9aa0a8" stroke-dasharray="2 3"/><text x="${Lp - 6}" y="${y(100) + 4}" font-size="11" text-anchor="end" fill="#8a8f98">100</text>
+<polyline fill="none" stroke="#1b1f27" stroke-width="2" stroke-dasharray="6 4" points="${ic.map((q, m) => `${x(m)},${y(q)}`).join(" ")}"/>
+<polyline fill="none" stroke="#2a78d6" stroke-width="3" stroke-linejoin="round" points="${ia.map((q, m) => `${x(m)},${y(q)}`).join(" ")}"/>
+<text x="${W - R + 8}" y="${ya + 4}" font-size="12.5" font-weight="700" fill="#2a78d6">${esc(b.name)} ${nf(ia[n])}</text><text x="${W - R + 8}" y="${yc + 4}" font-size="12.5" fill="#1b1f27">${esc(b.catName ?? "Category")} ${nf(ic[n])}</text>
+${[0, Math.round(n / 2), n].map((m) => `<text x="${x(m)}" y="${h - 6}" font-size="11" text-anchor="middle" fill="#8a8f98">${month(m)}</text>`).join("")}</svg>`;
+  const gapRow = (label, a, cg, warn) => {
+    if (warn || a == null) return `<div class="vc-row"><span class="vc-k">${label}</span><span class="warn">⚠ ${L("chưa đo được", "can't measure")}</span><span class="mut">${esc(b.catName ?? "Category")} ${pf(cg, true)}</span></div>`;
+    const d = a - cg, g = Math.max(-60, Math.min(60, d));
+    return `<div class="vc-row"><span class="vc-k">${label}</span><div><div class="gapbar"><i style="${g < 0 ? `right:50%;width:${(-g / 60) * 50}%;background:var(--dn)` : `left:50%;width:${(g / 60) * 50}%;background:var(--up)`}"></i><b></b></div><div class="${d < 0 ? "dn" : "up"}" style="font-size:13px;font-weight:600">${d < 0 ? L("chậm hơn", "slower by") : L("nhanh hơn", "faster by")} ${nf(Math.abs(d))} ${L("điểm", "pts")}</div></div><span class="mut">${esc(b.name)} ${pf(a, true)} · ${esc(b.catName ?? "Category")} ${pf(cg, true)}</span></div>`;
+  };
+  return `<div class="vc"><div class="card">${chart}</div><div class="card vc-side"><div class="eyebrow">${L("So với category", "vs the category")}</div>${gapRow(L("12 tháng", "12 months"), ga.g, gc.g, ga.warn)}${gapRow(L("24 tháng", "24 months"), g24a, g24c, jumpy(v))}<div class="vc-key"><span><i style="background:#2a78d6"></i>${esc(b.name)}</span><span><i style="background:#1b1f27"></i>${esc(b.catName ?? "Category")} (${L("tổng lượt cài", "all installs")})</span></div></div></div>`;
+});
+
 // Scorecard overview (competitor report): status + Qikify-vs-category gap bar are computed from the numbers.
 const STATUS = () => [
   { label: L("Vượt category", "Ahead of category"), tone: "up", means: L("tăng nhanh hơn cả category (hơn 5 điểm %)", "grows over 5 pts faster than its category") },
@@ -173,13 +197,14 @@ const STATUS = () => [
   { label: L("Còn nhỏ", "Too small"), tone: "n", means: L("dưới 150 store, % tăng chưa có ý nghĩa", "under 150 stores, % growth is noise") },
 ];
 function status(r) {
+  if (Array.isArray(r.catSeries)) r.catGrowth = growth(r.catSeries).g; // robust, like the app side
   const S = STATUS(), g = r.series ? growth(r.series) : { g: r.growth, warn: false };
   if (g.warn || r.warn) return { ...S[3], g: g.g };
   if ((r.stores ?? 0) < 150 || g.g == null) return { ...S[4], g: g.g };
   const gap = g.g - r.catGrowth;
   return { ...(gap < -5 ? S[2] : gap > 5 ? S[0] : S[1]), g: g.g };
 }
-def("scoreTable", "subject (e.g. Qikify), rows: [{area, stores, series? (24) | growth, catGrowth (12-month %), share (%), leader, leaderStores, hi?}]", (b) => {
+def("scoreTable", "subject (e.g. Qikify), rows: [{area, stores, series? (24) | growth, catSeries? (24 category installs — preferred) | catGrowth (12-month %), share (%), leader, leaderStores, hi?}]", (b) => {
   const gapCell = (r, st) => {
     if (st.tone === "warn") return `<div class="gap"><span class="warn" style="font-size:12.5px">⚠ ${L("chưa đo được", "can't measure")}</span></div>`;
     if (st.label === STATUS()[4].label) return `<div class="gap"><span class="mut" style="font-size:12.5px">${L("còn nhỏ, chưa so", "too small to compare")}</span></div>`;
@@ -239,7 +264,7 @@ body{margin:0;background:#f4f2ed}main{max-width:1180px;margin:0 auto;padding:36p
 .top{margin:0 4px 20px}.top h1{font:500 38px/1.12 Georgia,serif;margin:6px 0 8px;letter-spacing:-.01em}.top p{color:#4a505a;max-width:820px;margin:0}
 .toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 4px 24px}.toc a{font-size:12.5px;background:#fff;border:1px solid #e6e3dc;border-radius:99px;padding:4px 11px;text-decoration:none;color:#1b1f27}
 .foot{font-size:12.5px;color:#6b717c;margin:30px 4px 0}.foot ul{padding-left:18px}.src{font-size:12px;color:#6b717c;margin:16px 4px 0}
-.rp a{color:inherit}.rp .bc .rivals{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px}.rp .bc .rivals button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:7px 12px;text-align:left;cursor:pointer;display:grid;flex:none}
+.rp a{color:inherit}.rp .vc{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(240px,1fr);gap:14px;align-items:stretch}.rp .vc-side{display:grid;gap:14px;align-content:start}.rp .vc-row{display:grid;gap:4px}.rp .vc-row .vc-k{font-size:12px;color:var(--mut);font-weight:600}.rp .vc-row>.mut{font-size:12px}.rp .vc-key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--mut)}.rp .vc-key i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:3px}@media (max-width:720px){.rp .vc{grid-template-columns:1fr}}.rp .stack{gap:2px;background:#fff}.rp .grid-cards{grid-template-columns:repeat(auto-fill,minmax(165px,1fr));align-items:stretch}.rp .rc{align-content:start}.rp .bc .rivals{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px}.rp .bc .rivals button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:7px 12px;text-align:left;cursor:pointer;display:grid;flex:none}
 .rp .bc .rivals button b{font-size:13px}.rp .bc .rivals button span{font-size:11px;color:var(--mut)}.rp .bc .rivals button[aria-selected="true"]{border-color:var(--ink);box-shadow:0 0 0 1.5px var(--ink)}
 .rp .bc .vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:6px 0 14px;padding:16px 18px;border-radius:16px;background:linear-gradient(90deg,#eaf1fd,#fff 45%,#fff 55%,#f4f2ed)}
 .rp .bc .side{display:flex;align-items:center;gap:12px}.rp .bc .side.r{justify-content:flex-end;text-align:right}.rp .bc .side b{display:block;font-size:18px}.rp .bc .side span{font-size:12px;color:var(--mut)}.rp .bc .side.q .mono{background:var(--q);color:#fff}

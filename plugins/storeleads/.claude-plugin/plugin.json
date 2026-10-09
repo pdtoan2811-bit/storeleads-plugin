@@ -1,7 +1,7 @@
 {
   "name": "storeleads",
   "displayName": "StoreLeads",
-  "version": "1.0.0-8e956d43",
+  "version": "1.0.0-cca48e02",
   "description": "StoreLeads Shopify app & store data (24 monthly snapshots) through the team Grafana: installs, growth, Plus, competitors, stacks, churn, categories. Internal use only.",
   "author": {
     "name": "Qikify / Ownego"

@@ -8,7 +8,7 @@
 - [Skill: data rules + SQL recipes](plugins/storeleads/skills/storeleads-grafana/SKILL.md)
 - [Use cases: intent → recipes → caveats](plugins/storeleads/skills/storeleads-grafana/references/use-cases.md)
 - [Category map (draft Level 1 / Level 2)](plugins/storeleads/skills/storeleads-grafana/references/categories.md)
-- [Skill: shareable HTML reports (10 types)](plugins/storeleads/skills/storeleads-reports/SKILL.md)
+- [Skill: shareable HTML reports (11 types)](plugins/storeleads/skills/storeleads-reports/SKILL.md)
 - [Report types: blocks + text to write](plugins/storeleads/skills/storeleads-reports/references/report-types.md)
 - [Report recipes: the SQL behind each report](plugins/storeleads/skills/storeleads-reports/references/recipes.md)
 - [Command /storeleads:report](plugins/storeleads/commands/report.md)

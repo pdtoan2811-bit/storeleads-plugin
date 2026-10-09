@@ -32,7 +32,14 @@ the names that mean the same job (cart drawer = `cart customization`, `cart modi
 A sibling can be tiny (a few dozen installs) — fine. **Some big rivals sit outside CATS** (Shopify Forms is under `email marketing`):
 after R5, add same-job apps from the leavers' list to a RIVALS list by hand and say so in the caveats.
 
-Category totals, now / 12 months ago / 24 months ago:
+Category installs per month (24 values = `catSeries`; the renderer turns it into robust growth — the category has crawl
+spikes too, and s23 vs s11 once read a flat category where the real 12-month growth was double-digit):
+```sql
+SELECT a.month AS month, sum(a.stores) AS installs FROM slim.app_month_agg a JOIN slim.app_dim d ON d.app_id = a.app_id
+WHERE d.primary_category IN (CATS) GROUP BY month ORDER BY month
+```
+
+Category totals, now / 12 months ago / 24 months ago (for KPI captions; NOT for growth):
 ```sql
 SELECT a.month AS month, sum(a.stores) AS installs, sumIf(a.stores, a.is_plus = 1) AS plus, uniqExact(a.app_id) AS apps
 FROM slim.app_month_agg a JOIN slim.app_dim d ON d.app_id = a.app_id
@@ -150,6 +157,20 @@ FROM slim.store_app s JOIN slim.store_dim sd ON sd.store_id = s.store_id JOIN sl
 WHERE ad.app_key IN ('KEY','RIVAL1','RIVAL2') AND bitTest(s.months, 23) AND bitTest(sd.active_months, 23) GROUP BY key ORDER BY n DESC
 ```
 `estimated_sales` is cents/month: t1 < $1k, t2 $1k–10k, t3 $10k–100k, t4 ≥ $100k. `apps_now` is an array — use `length()`.
+
+## R10 · Portfolio in one go: every app of a vendor, its series, its category series
+
+Apps + 24-month series (one query; pass `limit: 1000`):
+```sql
+SELECT d.app_key, any(d.name) AS name, any(d.primary_category) AS cat, a.month AS month, sum(a.stores) AS s
+FROM slim.app_month_agg a JOIN slim.app_dim d ON d.app_id = a.app_id
+WHERE d.vendor_name ILIKE '%VENDOR%' GROUP BY d.app_key, month ORDER BY d.app_key, month
+```
+A young app has no rows for the months before it existed: fill those months with 0 so every `series` has 24 values.
+Two keys with near-identical numbers (an old and a new listing) are one app: keep the bigger key (R0).
+Then, per app, merge its primary category with its siblings (R1) and pull that set's monthly installs (R1, `catSeries`)
+and its leader (R2, first row that isn't the vendor). Apps sharing a category set share one query. Category share =
+app stores at month 23 ÷ the set's installs at month 23 × 100.
 
 ## Listing facts (not in the data)
 

@@ -1,7 +1,7 @@
 ---
 name: storeleads-reports
 allowed-tools: Read, Write, Bash(node *render.mjs*), WebFetch, mcp__plugin_storeleads_grafana, mcp__grafana
-description: Deliver a finished, shareable StoreLeads REPORT as one self-contained HTML page — competitor report (scorecard + battlecards), growth check, category scan, app idea check, churn post-mortem, Plus gap, geo expansion, stack & partnership, newcomer watch, customer profile vs rivals. Use when someone asks for a "report", "báo cáo", "brief", "one-pager", "phân tích đối thủ", "make this a page I can share", or any of those ten questions as a deliverable rather than a quick chat answer. Data via the Grafana MCP (datasource storeleads-ch, database slim); the queries and data rules come from the storeleads-grafana skill. Internal use only.
+description: Deliver a finished, shareable StoreLeads REPORT as one self-contained HTML page — portfolio scorecard (every app of a vendor vs its category), competitor report (scorecard + battlecards), growth check, category scan, app idea check, churn post-mortem, Plus gap, geo expansion, stack & partnership, newcomer watch, customer profile vs rivals. Use when someone asks for a "report", "báo cáo", "brief", "one-pager", "phân tích đối thủ", "make this a page I can share", or any of those ten questions as a deliverable rather than a quick chat answer. Data via the Grafana MCP (datasource storeleads-ch, database slim); the queries and data rules come from the storeleads-grafana skill. Internal use only.
 ---
 
 # StoreLeads reports
@@ -10,7 +10,7 @@ You turn StoreLeads data into a report people **read at a glance**: every block 
 every chart says how to read it, every number sits next to what it is compared with, and ⚠ marks what the data can't
 tell. The look is fixed (approved 2026-10-08) and lives in the renderer — you write a JSON document, never HTML or CSS.
 
-## The ten reports
+## The eleven reports
 
 | Type | Question | Detail |
 |---|---|---|
@@ -24,6 +24,7 @@ tell. The look is fixed (approved 2026-10-08) and lives in the renderer — you 
 | 8 Stack & partnership | What else do its stores run? | co-install share + lift, partner cards |
 | 9 Newcomer watch | Which new apps to watch? | cards + stores gained per month since launch |
 | 10 Customer profile vs rivals | Whose customers are bigger? | revenue-mix bars, % Plus, median revenue |
+| 11 Portfolio scorecard | Which of our apps fall behind their category? | one table: status, gap bar vs category, share, leader |
 
 Blocks, order and the text to write for each: `references/report-types.md`. Queries: `references/recipes.md`.
 
@@ -75,7 +76,8 @@ Row shapes: `fanOut.rows` `{label, v, note}` · `netBars.rows` `{label, lost, wo
 
 ## Data rules the renderer enforces (and you must explain)
 
-- **12-month growth is robust**: 3-month median now vs the same 3 months a year ago. Pass series, not s23/s11.
+- **12-month growth is robust**: 3-month median now vs the same 3 months a year ago — for the app AND the category.
+  Pass series (`series`, `catSeries`), never s23/s11: one crawl spike in month 11 or 23 flips the conclusion.
 - **⚠ = can't tell**: a series that doubles or halves in a month (crawl / attribution jumps) and never returns to its old
   level, or whose end months swing. Say why in the reply ("StoreLeads gán nhầm store giữa các app cùng hãng").
 - **Monthly bars flag outlier months** (> 3× usual) automatically.

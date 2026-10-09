@@ -16,6 +16,7 @@ approved order — keep it.
 | 8 | Stack & partnership | What else do the app's stores run? | BD, marketing | R0 R8 |
 | 9 | Newcomer watch | Which new apps should we watch? | PM, founder | R1 R2 (newcomers) |
 | 10 | Customer profile vs rivals | How do our customers differ from our rivals'? | marketing, sales | R0 R2 R9 |
+| 11 | Portfolio scorecard | Which of our apps are falling behind their category? | founder, leads | R0 R1 R3 R10 |
 
 Several types on one subject = one document with one page each (a "pack"); the renderer adds a table of contents.
 
@@ -27,10 +28,11 @@ For a VENDOR with several apps (e.g. "Qikify"), or one app. Pages:
 
 **Overview page** (only with 2+ apps): `scoreTable` — one row per app: `area` (≤ 3 words), `stores`, `series` (24 months,
 from R3) or `growth`, `catGrowth` (category installs 12-month %, R1), `share` (app stores ÷ category installs × 100),
-`leader` + `leaderStores`, `href` to its page. The table computes status (Vượt / Giữ nhịp / Tụt lại / Số chưa chắc / Còn
+`leader` + `leaderStores`, `href` to its page, and `catSeries` (24 category installs, R1) — never a single `catGrowth`
+number unless you have no series. The table computes status (Vượt / Giữ nhịp / Tụt lại / Số chưa chắc / Còn
 nhỏ) and the gap bar itself, and prints the legend. Then `how`.
 
-**One page per app** (`id` = the href):
+**One page per app** (`id` = the href). Add `vsCategory` after the KPIs when the app's growth story matters.
 1. `question` = the headline (write: ≤ 12 words, what is happening), `lede` = one sentence why (write).
 2. `kpis` ×5: stores · share (with "two years ago: X") · rank ("on N apps of its kind") · category 12-month growth · % Plus.
 3. `ask` "Ai đang cạnh tranh, và họ lớn hay nhỏ đi?" → `table`: rival · `{bar}` size · `{growth:{series}}` · stores lost to
@@ -44,9 +46,19 @@ nhỏ) and the gap bar itself, and prints the legend. Then `how`.
 Choosing the 10 rivals: same job in the category set (leaders) + where the app's leavers went (R5, index > 1) + fast
 risers/newcomers. A rival is "direct" (same job) or "adjacent" (overlapping suite). Fewer than 10 real ones → fewer.
 
+## 11 · Portfolio scorecard (Thomas: "I love this one", 2026-10-09)
+Every app of a vendor on one page, each against ITS OWN category. One page, `question` "N mảng, mảng nào đang tụt lại?",
+blocks: `scoreTable` (subject = the vendor) → `how` (share = app stores ÷ category installs; click a name to jump).
+Rows need, per app: `area` (≤ 3 words), `stores` (month 23), `series` (24, R3), `catSeries` (24, R10 — the app's
+merged category set), `share`, `leader` + `leaderStores` (biggest app in the set, R2). Merge duplicate listings first (R0).
+The table prints the status legend, computes status and the gap bar, and sorts by stores. Add `href` to rows only when the
+document has a page with that `id` (as in the competitor report, where this is the overview page).
+
 ## 2 · Growth check
 `verdict` (tone from the data: ⚠ "Chưa chắc" when the series jumps — the renderer shades those months) → `kpis` (stores now ·
-real uninstalls 12 months · stores that left the data · category 12 months) → `ask` + `card[areaTrend]` + `how` →
+real uninstalls 12 months · stores that left the data · category 12 months) → `ask` "X tăng nhanh hay chậm hơn cả
+category?" + `vsCategory` (app series + catSeries: both indexed to 100, gap in points for 12 and 24 months) + `how` →
+`ask` + `card[areaTrend]` + `how` →
 `ask` "Store mất đi là do gỡ app hay do store đóng cửa?" + `card[monthBars]` (R4) + `how`.
 
 ## 3 · Category scan
