@@ -273,7 +273,7 @@ body{margin:0;background:#f4f2ed}main{max-width:1180px;margin:0 auto;padding:36p
 </style></head><body><main>
 <header class="top"><div class="eyebrow" style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6b717c;font-weight:600">${esc(d.eyebrow ?? "StoreLeads")}</div><h1>${md(d.title)}</h1>${d.intro ? `<p>${md(d.intro)}</p>` : ""}</header>
 ${toc}${pages.join("\n")}${cav}
-<p class="src">${esc(d.source ?? L("Nguồn: StoreLeads (nội bộ), 10/2024 – 10/2026, qua Grafana MCP. Chỉ dùng nội bộ.", "Source: StoreLeads (internal), Oct 2024 – Oct 2026, via Grafana MCP. Internal use only."))}</p>
+<p class="src">${esc(d.source ?? L("Nguồn: StoreLeads, 10/2024 – 10/2026, qua Grafana MCP.", "Source: StoreLeads, Oct 2024 – Oct 2026, via Grafana MCP."))}</p>
 </main></body></html>`;
 }
 

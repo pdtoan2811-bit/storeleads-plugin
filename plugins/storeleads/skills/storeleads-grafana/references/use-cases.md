@@ -13,7 +13,6 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 - `domains`: One shop with several domains counts once — counts run slightly under StoreLeads' own.
 - `crawl`: Crawl artefacts: Plus dips Feb 2025 / Feb 2026, store jump Nov 2025, some app spikes Sep 2026 — flag them.
 - `draft-group`: Level 1 / Level 2 is a DRAFT grouping — say so whenever an answer leans on it.
-- `licence`: Internal analysis only (StoreLeads ToS §2); store lists capped, never for outreach.
 
 ## competitor
 
@@ -132,9 +131,9 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### plus-gap · /storeleads:plus-gap
 
 - **Asked like:** "How many US Plus stores have no reviews app?" · "Bao nhiêu store Plus ở Mỹ chưa có app review nào?"
-- **Intent:** Plus stores with no app in the category, by country. Counts only — no lists for outreach.
+- **Intent:** Plus stores with no app in the category, by country.
 - **Recipes:** 6
-- **Caveats:** `latest`, `licence`
+- **Caveats:** `latest`
 - **Dashboard to link:** sl-cat-geo (Geo) — https://storedata.ecvision.ai/d/sl-cat-geo
 
 ### new-stores
@@ -160,12 +159,12 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 - **Asked like:** "Make a one-page report on Klaviyo: size, growth, top countries." · "Turn the answers above into one report page." · "Làm một trang báo cáo về Klaviyo: quy mô, tăng trưởng, nước mạnh nhất, để gửi sếp." · "Gộp các câu trả lời ở trên thành một trang báo cáo gửi sếp."
 - **Intent:** One self-contained HTML page with charts, tables, caveats and a cite line (data + snapshot date): reuse answers already in this chat, or run the recipes the request names. Save it as a file and give its path.
 - **Recipes:** 1, 5
-- **Caveats:** `licence`, `latest`
+- **Caveats:** `latest`
 
 ### store-list
 
 - **Asked like:** "Show 20 German Plus stores running Klaviyo but not Shopify Inbox." · "Cho mình 20 store Plus ở Đức đang dùng Klaviyo nhưng chưa có Shopify Inbox."
-- **Intent:** Count first; list capped; refuse full exports and point to Thomas (licence).
+- **Intent:** Count first, then the list at the size asked (full list on request; long lists to a CSV file).
 - **Recipes:** 10
-- **Caveats:** `licence`
+- **Caveats:** `latest`
 - **Dashboard to link:** sl-app-merchants (Stores list) — https://storedata.ecvision.ai/d/sl-app-merchants

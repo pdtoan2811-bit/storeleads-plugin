@@ -45,11 +45,11 @@ Không. Mỗi tháng một snapshot. "Hiện nay" luôn là snapshot mới nhấ
 
 ### Tôi có xin được danh sách store đầy đủ không?
 
-Claude chỉ cho đếm và một danh sách ngắn để phân tích. Cần bản đầy đủ: nhắn Toàn trên Slack, ghi rõ bộ lọc (app, quốc gia, Plus hay không) và dùng để làm gì. Danh sách này chỉ dùng phân tích nội bộ, không outreach (điều khoản StoreLeads §2).
+Có. Hỏi Claude kèm bộ lọc (app, quốc gia, Plus hay không) và số dòng muốn lấy, hoặc "lấy hết". Danh sách dài được lưu thành file CSV trên máy bạn.
 
 ### Tôi dán số vào slide gửi đối tác ngoài được không?
 
-Không. Số liệu chỉ dùng nội bộ. Trong slide nội bộ, luôn ghi mốc snapshot và giữ các lưu ý. Xem mục cuối của [Đọc số cho đúng](./03-doc-so-cho-dung.md).
+Được. Luôn ghi mốc snapshot và giữ các lưu ý. Xem mục cuối của [Đọc số cho đúng](./03-doc-so-cho-dung.md).
 
 ### Token của tôi có an toàn không? Tôi có làm hỏng dữ liệu được không?
 

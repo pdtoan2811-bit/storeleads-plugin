@@ -1,7 +1,7 @@
 ---
 name: storeleads-reports
 allowed-tools: Read, Write, Bash(node *render.mjs*), WebFetch, mcp__plugin_storeleads_grafana, mcp__grafana
-description: Deliver a finished, shareable StoreLeads REPORT as one self-contained HTML page — portfolio scorecard (every app of a vendor vs its category), competitor report (scorecard + battlecards), growth check, category scan, app idea check, churn post-mortem, Plus gap, geo expansion, stack & partnership, newcomer watch, customer profile vs rivals. Use when someone asks for a "report", "báo cáo", "brief", "one-pager", "phân tích đối thủ", "make this a page I can share", or any of those ten questions as a deliverable rather than a quick chat answer. Data via the Grafana MCP (datasource storeleads-ch, database slim); the queries and data rules come from the storeleads-grafana skill. Internal use only.
+description: Deliver a finished, shareable StoreLeads REPORT as one self-contained HTML page — portfolio scorecard (every app of a vendor vs its category), competitor report (scorecard + battlecards), growth check, category scan, app idea check, churn post-mortem, Plus gap, geo expansion, stack & partnership, newcomer watch, customer profile vs rivals. Use when someone asks for a "report", "báo cáo", "brief", "one-pager", "phân tích đối thủ", "make this a page I can share", or any of those ten questions as a deliverable rather than a quick chat answer. Data via the Grafana MCP (datasource storeleads-ch, database slim); the queries and data rules come from the storeleads-grafana skill.
 ---
 
 # StoreLeads reports
@@ -83,5 +83,4 @@ Row shapes: `fanOut.rows` `{label, v, note}` · `netBars.rows` `{label, lost, wo
 - **Monthly bars flag outlier months** (> 3× usual) automatically.
 - **Same-job rivals only** in switching charts (popular apps like Klaviyo, Judge.me top every leaver list).
 - **A vendor's own apps** are never rivals; their switching numbers are an artefact.
-- Store lists: at most 100 rows; full lists → "DM Toàn (Thomas)". No outreach exports. Internal use only (StoreLeads ToS §2).
 - The data: 25 monthly snapshots, Oct 2024 → Oct 2026, active Shopify stores. Nothing before Oct 2024.

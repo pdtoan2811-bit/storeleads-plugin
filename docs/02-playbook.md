@@ -382,7 +382,6 @@ _Shopify Plus, quốc gia, theme, store mới mở._
 **Lưu ý:**
 
 - "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
-- Chỉ dùng nội bộ. Không xuất danh sách store để outreach, không đăng số liệu ra ngoài.
 
 **Xem trên dashboard:** [Geo](https://storedata.ecvision.ai/d/sl-cat-geo)
 
@@ -455,10 +454,9 @@ _Một trang tổng hợp gửi được cho sếp hoặc đối tác nội bộ
 
 **Lưu ý:**
 
-- Chỉ dùng nội bộ. Không xuất danh sách store để outreach, không đăng số liệu ra ngoài.
 - "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 
-### Danh sách store (giới hạn)
+### Danh sách store
 
 **Dành cho:** PM
 
@@ -472,11 +470,10 @@ _Một trang tổng hợp gửi được cho sếp hoặc đối tác nội bộ
 
 </details>
 
-**Bạn nhận được:** Số đếm + một danh sách ngắn để phân tích. Cần bản đầy đủ thì nhắn Toàn.
+**Bạn nhận được:** Số đếm + danh sách store theo đúng số dòng bạn hỏi (cả kèm liên hệ nếu có). Danh sách dài được lưu thành file CSV.
 
 **Lưu ý:**
 
-- Chỉ dùng nội bộ. Không xuất danh sách store để outreach, không đăng số liệu ra ngoài.
 
 **Xem trên dashboard:** [Stores list](https://storedata.ecvision.ai/d/sl-app-merchants)
 

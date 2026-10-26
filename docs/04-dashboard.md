@@ -103,8 +103,6 @@ Chọn **Level 1**, rồi **Level 2**, rồi **Category** để thu hẹp dần,
 
 **Muốn hỏi sâu hơn?** Hỏi Claude với plugin StoreLeads: [hướng dẫn cài](https://github.com/pdtoan2811-bit/storeleads-plugin).
 
-> Chỉ dùng nội bộ: không xuất danh sách store để outreach, không đăng số liệu ra ngoài.
-
 <!-- walkthrough:end -->
 
 ## Tra cứu: 13 tab
@@ -152,6 +150,5 @@ Phần lớn tab ở cửa này dùng được cho câu hỏi "có nên làm app
 
 - Mỗi biểu đồ có thể mất vài giây mới hiện. Đợi hết vòng xoay trước khi đổi tiếp.
 - Tab nào hiện ô lỗi đỏ: chụp màn hình gửi Toàn.
-- Chụp màn hình để họp nội bộ được, nhưng không đăng ra ngoài. Xem mục cuối [Đọc số cho đúng](./03-doc-so-cho-dung.md).
 
 Tiếp theo: [Sự cố & câu hỏi thường gặp](./05-su-co.md) · [Cách hỏi Claude](./01-cach-hoi.md)

@@ -6,9 +6,6 @@ Plugin nội bộ cho team Qikify / Ownego. Hiện có một plugin:
 % là Plus?", "Ai đang cạnh tranh với Judge.me?", "Store bỏ Loox thì chuyển sang app nào?". Claude đọc dữ liệu
 StoreLeads (25 snapshot theo tháng, 10/2024 → 10/2026) qua Grafana của team, chỉ đọc, không sửa được gì.
 
-> ⚠️ **Chỉ dùng nội bộ.** Không xuất danh sách store để đi outreach, không công bố số liệu ra ngoài (điều khoản
-> StoreLeads §2).
-
 ## Cài đặt (2 bước, khoảng 2 phút)
 
 Cần có **Claude Code** (app terminal `claude`). Bản web claude.ai chưa dùng được, sẽ có sau.

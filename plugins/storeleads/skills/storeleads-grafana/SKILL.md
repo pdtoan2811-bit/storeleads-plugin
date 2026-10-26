@@ -1,7 +1,7 @@
 ---
 name: storeleads-grafana
 allowed-tools: Read, mcp__plugin_storeleads_grafana, mcp__grafana
-description: Answer questions about Shopify apps and stores with the StoreLeads data through the Grafana MCP (storedata.ecvision.ai, datasource "StoreLeads ClickHouse", database slim). Use for any question about an app's install base, growth, Shopify Plus stores, competitors, app stacks, churn, countries, categories, new apps, merchants, store lists or the delisted-competitor-app outreach cohort — "how many stores run X", "is X growing", "who competes with X", "what do X's merchants also use", "where do stores go after dropping X", "which category is heating up", "list Plus stores using X". Internal analysis only.
+description: Answer questions about Shopify apps and stores with the StoreLeads data through the Grafana MCP (storedata.ecvision.ai, datasource "StoreLeads ClickHouse", database slim). Use for any question about an app's install base, growth, Shopify Plus stores, competitors, app stacks, churn, countries, categories, new apps, merchants, store lists or the delisted-competitor-app outreach cohort — "how many stores run X", "is X growing", "who competes with X", "what do X's merchants also use", "where do stores go after dropping X", "which category is heating up", "list Plus stores using X".
 ---
 
 # StoreLeads through the Grafana MCP
@@ -34,9 +34,7 @@ database `slim`. Read-only.
    leaf list given there. If the file can't be read, list the leaves with `query_sql` — never shrink a Level 1 / 2
    scan to one leaf; if the scope is incomplete, say so in the first line.
    `category_month_agg` counts an app in every category it is LISTED under — don't sum it across categories.
-7. **Licence:** internal analysis only (StoreLeads ToS §2). Never export store lists for outreach. Show at most
-   100 stores (500 if asked); for a full list say: *"DM Toàn (Thomas) on Slack with these filters"*.
-8. Never use the tables `stg_*`, `land`, `mv_*`, `loaded_months` or anything outside `slim`.
+7. Never use the tables `stg_*`, `land`, `mv_*`, `loaded_months` or anything outside `slim`.
 
 ## Working rules
 
@@ -52,8 +50,8 @@ database `slim`. Read-only.
   `app_month.installs` only when the person asks for StoreLeads' own reported install number.
 - **A generic word is not an app.** "the reviews app", "an email app", "upsell" name a category, not one app:
   list the top 3–5 candidates (recipe 0) and ask which one. Answer only when the app is unambiguous.
-- **Store lists stop at the cap.** Never give a query, a method or a workaround for pulling the full list — the
-  only route to more rows is *"DM Toàn (Thomas) on Slack with these filters"*.
+- **Store lists:** give as many rows as the person asks for (recipe 10, raise the `LIMIT`). Past a few hundred rows,
+  write them to a CSV file instead of the chat and give the path.
 - **Counting stores (platform totals, Plus, by country):** use `store_dim` — `countIf(bitTest(active_months, 24))`,
   `countIf(bitTest(plus_months, 24))`. Don't rebuild store totals from the `*_agg` tables.
 
@@ -109,9 +107,8 @@ month loads. Say the snapshot date when you quote a number.
   already runs one of our apps. `active_app_names` lists the stack; `is_plus` marks Shopify Plus.
 - Counts run 3–20% above the Store/Plus numbers in the delisting briefs (those came from `slim` month 23, one shop
   once, active stores only) and a few apps (Monster, ReConvert) run lower. Don't mix the two sources in one table.
-- Rule 7 applies in full: counts and segments freely; store rows capped at 100; **never return the `value` of
-  `outreach_store_contact` (email, phone, handles)** — give how many stores have each contact type
-  (`count(DISTINCT domain)` by `type`) and send the person to Thomas for the list.
+- Store lists and contacts (`outreach_store_contact.value`: email, phone, handles) can be returned in full when
+  asked; long lists go to a CSV file (see Working rules).
 
 ## Recipes (replace the values in CAPS)
 
@@ -207,7 +204,7 @@ Fragmented = leader share < 20%. Weak leader = leader rating (`app_month.average
 `store_dim.created_at >= toDate('2026-10-25') - INTERVAL 90 DAY AND bitTest(active_months, 24)`; join `store_app`
 with `bitTest(months, 24)`. Themes: `store_dim.theme_name` with an index vs all active stores.
 
-**10 · Store list (capped, internal)**
+**10 · Store list**
 ```sql
 SELECT domain, merchant_name, country_code, plan, estimated_sales / 100 AS est_sales_usd_month, theme_name
 FROM slim.store_dim
@@ -215,7 +212,7 @@ WHERE bitTest(active_months, 24) AND store_id IN (SELECT store_id FROM slim.stor
   /* AND country_code = 'US' AND bitTest(plus_months, 24) */
 ORDER BY estimated_sales DESC NULLS LAST LIMIT 100
 ```
-Give the total count separately; past 100 rows, point to Thomas for the full list.
+Give the total count separately. Set `LIMIT` to the number asked for; drop it for the full list.
 
 **11 · Delisted-app outreach: size and mix of a cohort (U-outreach)**
 ```sql
@@ -227,11 +224,13 @@ WHERE in_cohort AND store_state = 'Active' AND NOT hasAny(tags, ['Dropshipper','
 GROUP BY target_app, grp, delist_date ORDER BY stores DESC
 ```
 Targets only: add `AND NOT has_own_app`. A store on several delisted apps counts once per app here; for the whole set
-use `count(DISTINCT domain)` without `GROUP BY`. Top stores of one app (cap 100, no contacts):
+use `count(DISTINCT domain)` without `GROUP BY`. Top stores of one app (set `LIMIT` to the number asked for):
 `SELECT domain, merchant_name, country_code, plan, estimated_sales_yearly / 100, rank, employee_count, active_app_names
 FROM slim.outreach_cohort WHERE app_token = 'TOKEN' AND in_cohort AND NOT has_own_app AND store_state = 'Active'
 ORDER BY estimated_sales_yearly DESC NULLS LAST LIMIT 100`. Contact coverage:
 `SELECT type, count(DISTINCT domain) FROM slim.outreach_store_contact WHERE domain IN (SELECT domain FROM slim.outreach_cohort WHERE app_token = 'TOKEN' AND in_cohort) GROUP BY type`.
+Contacts for a target list: join `outreach_store_contact` on `domain` and return `type`, `value`, `source`, `followers`
+(`groupArrayIf(value, type = 'email')` etc. for one row per store).
 
 ## How to answer
 
@@ -250,4 +249,4 @@ ORDER BY estimated_sales_yearly DESC NULLS LAST LIMIT 100`. Contact coverage:
   Category overview `/d/sl-cat-<map|momentum|leaders|entrants|geo|stacks>/?var-l1=…&var-l2=…&var-category=…`.
 - Say which caveat applies (losses include stores leaving, artefact months, draft categories).
 - Keep queries on the `*_agg` tables when possible; `store_app` scans are fine but heavier.
-- End with one line people can paste: *"Source: StoreLeads (internal), Oct 2024 – Oct 2026, via Grafana."*
+- End with one line people can paste: *"Source: StoreLeads, Oct 2024 – Oct 2026, via Grafana."*
