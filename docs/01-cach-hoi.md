@@ -48,7 +48,6 @@ Gõ lệnh, rồi thêm tên app hoặc category. Lệnh giúp Claude đi qua đ
 ## 5. Claude sẽ từ chối hoặc nói "không có" khi nào
 
 - **Dữ liệu trước 10/2024.** Mình chỉ có 25 tháng, 10/2024 đến 10/2026. Hỏi xa hơn thì Claude nói thẳng là không có, và không đoán.
-- **Danh sách store đầy đủ.** Claude chỉ cho tối đa một danh sách ngắn để phân tích. Cần bản đầy đủ thì nhắn Toàn trên Slack, kèm bộ lọc bạn muốn. Lý do: điều khoản StoreLeads cấm dùng danh sách này để outreach.
 - **Thứ dữ liệu không có.** Ví dụ doanh thu của một app, số tiền merchant trả cho app, lý do merchant gỡ app, store nào cài app trước hay sau. Dữ liệu chỉ cho biết store nào đang có app nào trong từng tháng.
 - **Số liệu "đang xảy ra hôm nay".** Dữ liệu là ảnh chụp theo tháng, snapshot cuối là 10/2026.
 

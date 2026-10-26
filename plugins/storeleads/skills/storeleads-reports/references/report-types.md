@@ -80,7 +80,7 @@ note "N× bình thường") + `how` (name the popular non-rival apps in one line
 
 ## 6 · Plus gap
 `grid`: `bigNumber` (sum of `without_one` over the top 10 countries + base) | `card[barList]` (country, `without_one`, note
-pill "% chưa có") → `how` with the licence line: lists capped at 100 rows, full list = "DM Toàn (Thomas)", internal only.
+pill "% chưa có") → `how`.
 
 ## 7 · Geo expansion
 `ask` + `card[indexBars]` (top 10 countries by stores, note "N store") + `how` → `ask` share by country + `card[barList]`

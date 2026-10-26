@@ -53,10 +53,6 @@ Các nhóm như "Marketing and conversion" hay "Social trust" là cách nhóm t�
 
 **Việc cần làm:** khi dùng kết luận về một nhóm lớn, ghi "theo cách nhóm draft của team".
 
-## 8. Chỉ dùng nội bộ
-
-Điều khoản StoreLeads §2: không xuất danh sách store để outreach, không đăng số liệu ra ngoài (blog, bài PR, pitch với khách). Cần danh sách đầy đủ cho việc nội bộ: nhắn Toàn.
-
 ## Bốn điều dễ nhầm khác
 
 **Số store không phải "installs" của StoreLeads.** Mình đếm store đang hoạt động có app. StoreLeads có một con số riêng gọi là installs (đếm theo mọi domain, và các bản 30 ngày / 90 ngày là thay đổi ròng, không phải số cài mới). Đừng trộn hai thứ trong một so sánh.
@@ -71,9 +67,9 @@ Các nhóm như "Marketing and conversion" hay "Social trust" là cách nhóm t�
 
 Một câu mẫu, gồm số, mốc thời gian, nguồn và giới hạn:
 
-> "Theo snapshot 10/2026 (StoreLeads, nội bộ), app X có … store, trong đó … là Plus. Số store đếm mỗi shop một lần."
+> "Theo snapshot 10/2026 (StoreLeads), app X có … store, trong đó … là Plus. Số store đếm mỗi shop một lần."
 
-Luôn kèm: (1) mốc snapshot, (2) khoảng thời gian so sánh, (3) lưu ý Claude đã ghi. Câu trả lời của Claude thường có dòng "Source: StoreLeads (internal), Oct 2024 – Oct 2026, via Grafana", hãy giữ nguyên dòng đó.
+Luôn kèm: (1) mốc snapshot, (2) khoảng thời gian so sánh, (3) lưu ý Claude đã ghi. Câu trả lời của Claude thường có dòng "Source: StoreLeads, Oct 2024 – Oct 2026, via Grafana", hãy giữ nguyên dòng đó.
 
 ## Tiếp theo
 
