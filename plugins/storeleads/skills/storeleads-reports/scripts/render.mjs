@@ -68,13 +68,13 @@ def("twoCards", "lose: {title, text}, win: {title, text}", (b) => `<div class="t
 def("moves", "groups: [{group, icon?, items: [{do, why}]}]", (b) => `<div class="moves">${b.groups.map((g) => `<div><div class="eyebrow" style="margin-bottom:8px">${esc(g.icon ?? "")} ${esc(g.group)}</div>${g.items.map((m) => `<div class="move"><b>${md(m.do)}</b><span>${L("vì", "because")} ${md(m.why)}</span></div>`).join("")}</div>`).join("")}</div>`);
 
 const note = (n) => (n && typeof n === "object" && n.pill ? pill(n.pill[0], esc(n.pill[1])) : md(n));
-def("barList", "rows: [{label, v (negative ok), note? (text or {pill:[tone,text]}), hi?, warn?, series? (24 → ⚠ when unsure), color?}], fmt?, mark?, markLabel?, color?", (b) => {
+def("barList", "rows: [{label, v (negative ok), note? (text or {pill:[tone,text]}), hi?, warn?, series? (25 → ⚠ when unsure), color?}], fmt?, mark?, markLabel?, color?", (b) => {
   for (const r of b.rows) if (r.series && growth(r.series).warn) r.warn = true;
   const M = Math.max(1, ...b.rows.map((r) => Math.abs(r.v ?? 0)), b.mark ?? 0), f = (n) => (FMT[b.fmt ?? "int"] ?? nf)(n);
   return `<div class="barlist">${b.rows.map((r) => `<div class="bl ${r.hi ? "hi" : ""}"><span class="bl-l">${esc(r.label)}</span><div class="bl-t"><i style="width:${(100 * Math.abs(r.v ?? 0)) / M}%;background:${r.hi ? "var(--q)" : r.color ?? b.color ?? "#c3c7cd"}"></i>${b.mark != null ? `<b style="left:${(100 * b.mark) / M}%"></b>` : ""}</div><span class="bl-v num">${f(r.v)}</span>${r.warn ? `<span class="bl-n">${pill("warn", "⚠ " + L("chưa chắc", "unsure"))}</span>` : r.note != null ? `<span class="bl-n">${note(r.note)}</span>` : ""}</div>`).join("")}${b.mark != null && b.markLabel ? `<div class="bl-mk">│ ${esc(b.markLabel)}</div>` : ""}</div>`;
 });
 
-def("areaTrend", "name, vals: [24 monthly values]", (b) => {
+def("areaTrend", "name, vals: [25 monthly values]", (b) => {
   const v = b.vals, W = 760, h = 260, Lp = 16, R = 16, T = 40, Bt = 30, max = Math.max(...v) * 1.12, n = v.length - 1;
   const x = (m) => Lp + (m * (W - Lp - R)) / n, y = (q) => T + (h - T - Bt) * (1 - q / max), bad = jumpMonths([v]);
   let jm = 1; for (let m = 1; m <= n; m++) if (Math.abs(v[m] - v[m - 1]) > Math.abs(v[jm] - v[jm - 1])) jm = m;
@@ -88,7 +88,7 @@ ${showJump ? `<line x1="${cx}" x2="${cx}" y1="${cy + 4}" y2="${Math.max(y(v[jm -
 ${[0, 6, 12, 18, n].map((m) => `<text x="${x(m)}" y="${h - 10}" font-size="11" text-anchor="${m === 0 ? "start" : m === n ? "end" : "middle"}" fill="#8a8f98">${month(m)}</text>`).join("")}</svg>`;
 });
 
-def("trend", "lines: [{name, vals: [24], q?}] — several series, Qikify/subject q:true", (b) => {
+def("trend", "lines: [{name, vals: [25], q?}] — several series, Qikify/subject q:true", (b) => {
   const W = 680, h = 230, Lp = 52, R = 140, T = 10, Bt = 24, n = b.lines[0].vals.length - 1, max = Math.max(1, ...b.lines.flatMap((l) => l.vals)) * 1.05;
   const x = (m) => Lp + (m * (W - Lp - R)) / n, y = (q) => T + (h - T - Bt) * (1 - q / max), bad = jumpMonths(b.lines.map((l) => l.vals));
   const lab = b.lines.map((l) => ({ l, y: y(l.vals[n]) })).sort((a, c) => a.y - c.y);
@@ -167,7 +167,7 @@ def("table", "cols: [{label, align?: r|c}], rows: [{cells: [...], hi?}] — a ce
 });
 
 // Our growth vs the category's: both indexed to 100 at month 0, plus the 12-month gap in points (robust growth both sides).
-def("vsCategory", "name, series: [24], catName, catSeries: [24 category installs] — indexed lines + 12- and 24-month gap", (b) => {
+def("vsCategory", "name, series: [25], catName, catSeries: [25 category installs] — indexed lines + 12- and 24-month gap", (b) => {
   const v = b.series, c = b.catSeries, n = v.length - 1, W = 640, h = 240, Lp = 40, R = 130, T = 14, Bt = 26;
   const ia = v.map((x) => (100 * x) / (v[0] || 1)), ic = c.map((x) => (100 * x) / (c[0] || 1));
   const lo = Math.min(...ia, ...ic, 100) * 0.92, hi = Math.max(...ia, ...ic, 100) * 1.06;
@@ -204,7 +204,7 @@ function status(r) {
   const gap = g.g - r.catGrowth;
   return { ...(gap < -5 ? S[2] : gap > 5 ? S[0] : S[1]), g: g.g };
 }
-def("scoreTable", "subject (e.g. Qikify), rows: [{area, stores, series? (24) | growth, catSeries? (24 category installs — preferred) | catGrowth (12-month %), share (%), leader, leaderStores, hi?}]", (b) => {
+def("scoreTable", "subject (e.g. Qikify), rows: [{area, stores, series? (25) | growth, catSeries? (25 category installs — preferred) | catGrowth (12-month %), share (%), leader, leaderStores, hi?}]", (b) => {
   const gapCell = (r, st) => {
     if (st.tone === "warn") return `<div class="gap"><span class="warn" style="font-size:12.5px">⚠ ${L("chưa đo được", "can't measure")}</span></div>`;
     if (st.label === STATUS()[4].label) return `<div class="gap"><span class="mut" style="font-size:12.5px">${L("còn nhỏ, chưa so", "too small to compare")}</span></div>`;
@@ -216,7 +216,7 @@ def("scoreTable", "subject (e.g. Qikify), rows: [{area, stores, series? (24) | g
 
 // Battlecard: the subject vs one rival at a time; tabs switch rivals (tiny inline script, works offline).
 let bcId = 0;
-def("battlecard", "a: {name, sub}, criteria: [{k, hint, fmt (int|pct|usd|star|bool|growth — growth takes 24-month series), lowerWins?}], rivals: [{name, sub?, stores, a: [values per criterion], b: [values], warn?: [criterion indexes], lost, won, strength, weakness}]", (b) => {
+def("battlecard", "a: {name, sub}, criteria: [{k, hint, fmt (int|pct|usd|star|bool|growth — growth takes 25-month series), lowerWins?}], rivals: [{name, sub?, stores, a: [values per criterion], b: [values], warn?: [criterion indexes], lost, won, strength, weakness}]", (b) => {
   const id = `bc${++bcId}`;
   const panel = (rv, j) => {
     const rows = b.criteria.map((c, i) => {
@@ -273,7 +273,7 @@ body{margin:0;background:#f4f2ed}main{max-width:1180px;margin:0 auto;padding:36p
 </style></head><body><main>
 <header class="top"><div class="eyebrow" style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6b717c;font-weight:600">${esc(d.eyebrow ?? "StoreLeads")}</div><h1>${md(d.title)}</h1>${d.intro ? `<p>${md(d.intro)}</p>` : ""}</header>
 ${toc}${pages.join("\n")}${cav}
-<p class="src">${esc(d.source ?? L("Nguồn: StoreLeads (nội bộ), 10/2024 – 09/2026, qua Grafana MCP. Chỉ dùng nội bộ.", "Source: StoreLeads (internal), Oct 2024 – Sep 2026, via Grafana MCP. Internal use only."))}</p>
+<p class="src">${esc(d.source ?? L("Nguồn: StoreLeads (nội bộ), 10/2024 – 10/2026, qua Grafana MCP. Chỉ dùng nội bộ.", "Source: StoreLeads (internal), Oct 2024 – Oct 2026, via Grafana MCP. Internal use only."))}</p>
 </main></body></html>`;
 }
 

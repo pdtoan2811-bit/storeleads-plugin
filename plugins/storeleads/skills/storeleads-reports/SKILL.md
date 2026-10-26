@@ -47,18 +47,18 @@ Blocks, order and the text to write for each: `references/report-types.md`. Quer
 ```json
 {
   "title": "Đang thắng hay thua ở từng mảng?", "slug": "doi-thu", "lang": "vi",
-  "eyebrow": "Hãng X · đối thủ theo từng mảng · StoreLeads 09/2026", "intro": "One sentence on how to read the whole report.",
+  "eyebrow": "Hãng X · đối thủ theo từng mảng · StoreLeads 10/2026", "intro": "One sentence on how to read the whole report.",
   "pages": [
     { "id": "app-a", "short": "App A", "n": 1, "eyebrow": "Growth check · cho PM", "question": "Headline ≤ 12 words",
       "blocks": [ { "type": "verdict", "tone": "warn", "label": "Chưa chắc", "line": "…", "proof": "…" },
-                  { "type": "kpis", "items": [ { "k": "Store đang dùng", "v": 1234, "s": "tháng 09/2026" } ] } ] }
+                  { "type": "kpis", "items": [ { "k": "Store đang dùng", "v": 1234, "s": "tháng 10/2026" } ] } ] }
   ],
   "caveats": ["Only the caveats that apply to THIS report."]
 }
 ```
 Numbers: give raw numbers; the renderer formats them (`vi`: 12.943 and 5,4%; `en`: 12,943 and 5.4%). A KPI value is a
 number, a string (an app name), or `{ "n": 1.2, "fmt": "pct+" }` (int, num, pct, pct+, usd, x, star, bool, int+).
-Percent formats take the PERCENT (19.0 → "19%"), never the ratio. Series: always the raw 24 monthly values (month 0…23).
+Percent formats take the PERCENT (19.0 → "19%"), never the ratio. Series: always the raw 25 monthly values (month 0…24).
 Row shapes: `fanOut.rows` `{label, v, note}` · `netBars.rows` `{label, lost, won}` · table cell `{growth: {series}}`.
 
 ## Writing rules (from the approved rounds — they are why the report reads well)
@@ -70,18 +70,18 @@ Row shapes: `fanOut.rows` `{label, v, note}` · `netBars.rows` `{label, lost, wo
 - **Every number has its comparison**: "4,2% · hai năm trước 6,0%", "3,1% · mặt bằng Shopify 2,0%", "hạng 4/11" (illustrative numbers).
 - **Moves = `do` ≤ 10 words + `why` with one number**: "Xin badge Built for Shopify — vì N trên M đối thủ đã có".
 - No jargon or field names on the page (`dropped_app`, `m23`, `switch_to_index`, "12th"): say "gỡ app thật",
-  "tháng 09/2026", "× bình thường", "12 tháng".
+  "tháng 10/2026", "× bình thường", "12 tháng".
 - Long analysis, if any, goes in a `details` block at the end of the page — never as paragraphs between visuals.
 - Vietnamese by default (the team's language); English if the person writes in English (`"lang": "en"`).
 
 ## Data rules the renderer enforces (and you must explain)
 
 - **12-month growth is robust**: 3-month median now vs the same 3 months a year ago — for the app AND the category.
-  Pass series (`series`, `catSeries`), never s23/s11: one crawl spike in month 11 or 23 flips the conclusion.
+  Pass series (`series`, `catSeries`), never s24/s12: one crawl spike in month 12 or 24 flips the conclusion.
 - **⚠ = can't tell**: a series that doubles or halves in a month (crawl / attribution jumps) and never returns to its old
   level, or whose end months swing. Say why in the reply ("StoreLeads gán nhầm store giữa các app cùng hãng").
 - **Monthly bars flag outlier months** (> 3× usual) automatically.
 - **Same-job rivals only** in switching charts (popular apps like Klaviyo, Judge.me top every leaver list).
 - **A vendor's own apps** are never rivals; their switching numbers are an artefact.
 - Store lists: at most 100 rows; full lists → "DM Toàn (Thomas)". No outreach exports. Internal use only (StoreLeads ToS §2).
-- The data: 24 monthly snapshots, Oct 2024 → Sep 2026, active Shopify stores. Nothing before Oct 2024.
+- The data: 25 monthly snapshots, Oct 2024 → Oct 2026, active Shopify stores. Nothing before Oct 2024.

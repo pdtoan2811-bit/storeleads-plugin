@@ -16,7 +16,7 @@ take the one with the most stores, say so in one line, and go on. Run every reci
 you skip it, say which in one line. The audience is a teammate at Qikify / Ownego: no personal or project context beyond this data.
 
 Answer in the language the person writes in, in plain words for a non-technical reader. Quote numbers exactly as the
-queries return them, with the snapshot (Sep 2026). Say these caveats where they apply:
+queries return them, with the snapshot (Oct 2026). Say these caveats where they apply:
 - losses include stores that left the data; real uninstalls = recipe 7 dropped_app (store still active).
 - Crawl artefacts: Plus dips Feb 2025 / Feb 2026, store jump Nov 2025, some app spikes Sep 2026 — flag them.
 

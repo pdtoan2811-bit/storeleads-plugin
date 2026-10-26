@@ -1,7 +1,7 @@
 # StoreLeads plugin (Qikify / Ownego)
 
-> Claude Code plugin + Vietnamese user guide for asking StoreLeads Shopify app/store data (24 monthly snapshots,
-> Oct 2024 → Sep 2026) through the team Grafana (https://storedata.ecvision.ai, read-only). Internal use only.
+> Claude Code plugin + Vietnamese user guide for asking StoreLeads Shopify app/store data (25 monthly snapshots,
+> Oct 2024 → Oct 2026) through the team Grafana (https://storedata.ecvision.ai, read-only). Internal use only.
 
 ## For an AI answering questions
 

@@ -6,7 +6,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 
 ## Caveat codes
 
-- `latest`: "Now" is the latest snapshot (month 23, Sep 2026); "last N days" counts back from 2026-09-27.
+- `latest`: "Now" is the latest snapshot (month 24, Oct 2026); "last N days" counts back from 2026-10-25.
 - `history`: No data before Oct 2024 — say so, never extrapolate.
 - `app-key`: Resolve apps to app_key first; ask when a name is ambiguous.
 - `losses`: losses include stores that left the data; real uninstalls = recipe 7 dropped_app (store still active).
@@ -62,7 +62,7 @@ language the person used. Generated from `src/data/guide-cases.ts` by `npm run s
 ### idea-check · /storeleads:app-idea-check
 
 - **Asked like:** "We're thinking of an upsell app. Is it worth it?" · "Mình định làm app upsell. Thị trường này có đáng làm không?"
-- **Intent:** Pick the matching categories and name them. Count apps and stores from app_month_agg at month 23. Then saturation, leader strength (share + rating per leader), newcomers, price points, Plus whitespace. Verdict by rule: go = leader under 20% or rated under 4.5 and newcomers gaining; no = a leader over 40% rated 4.7+; else maybe. State which rule fired.
+- **Intent:** Pick the matching categories and name them. Count apps and stores from app_month_agg at month 24. Then saturation, leader strength (share + rating per leader), newcomers, price points, Plus whitespace. Verdict by rule: go = leader under 20% or rated under 4.5 and newcomers gaining; no = a leader over 40% rated 4.7+; else maybe. State which rule fired.
 - **Recipes:** 3, 6, 8
 - **Caveats:** `latest`, `draft-group`, `crawl`
 - **Dashboard to link:** sl-cat-map (Map) — https://storedata.ecvision.ai/d/sl-cat-map

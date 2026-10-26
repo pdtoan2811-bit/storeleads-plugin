@@ -8,7 +8,7 @@ Chưa cài plugin? Xem [trang cài đặt](../README.md). Muốn xem ví dụ th
 
 **Gọi tên app rõ ràng.** Viết "Judge.me", "Klaviyo", đừng viết "app review" hay "app email". Đó là tên một nhóm, không phải một app. Nếu bạn viết tên chung, Claude sẽ liệt kê vài app và hỏi lại. Tên app cũng hay trùng nhau (ví dụ "Product Reviews" là app của chính Shopify), nên khi Claude hỏi "ý bạn là app nào?", hãy chọn đúng một app rồi trả lời.
 
-**Nói rõ khoảng thời gian.** "Trong 6 tháng qua", "so với 12 tháng trước". Không nói thì Claude sẽ tự chọn một mốc và ghi rõ mốc đó ra, nhưng tốt nhất bạn tự chọn. Lưu ý: "hiện nay", "tháng này", "tháng trước" đều nghĩa là snapshot mới nhất (9/2026), vì đó là dữ liệu mới nhất mình có.
+**Nói rõ khoảng thời gian.** "Trong 6 tháng qua", "so với 12 tháng trước". Không nói thì Claude sẽ tự chọn một mốc và ghi rõ mốc đó ra, nhưng tốt nhất bạn tự chọn. Lưu ý: "hiện nay", "tháng này", "tháng trước" đều nghĩa là snapshot mới nhất (10/2026), vì đó là dữ liệu mới nhất mình có.
 
 **Nói tất cả store hay chỉ Plus.** Plus là gói Shopify Plus, gói cao nhất của Shopify, thường là các store lớn. Nếu bạn quan tâm store lớn, hãy viết "chỉ store Plus". Không nói thì Claude trả cả hai.
 
@@ -47,10 +47,10 @@ Gõ lệnh, rồi thêm tên app hoặc category. Lệnh giúp Claude đi qua đ
 
 ## 5. Claude sẽ từ chối hoặc nói "không có" khi nào
 
-- **Dữ liệu trước 10/2024.** Mình chỉ có 24 tháng, 10/2024 đến 9/2026. Hỏi xa hơn thì Claude nói thẳng là không có, và không đoán.
+- **Dữ liệu trước 10/2024.** Mình chỉ có 25 tháng, 10/2024 đến 10/2026. Hỏi xa hơn thì Claude nói thẳng là không có, và không đoán.
 - **Danh sách store đầy đủ.** Claude chỉ cho tối đa một danh sách ngắn để phân tích. Cần bản đầy đủ thì nhắn Toàn trên Slack, kèm bộ lọc bạn muốn. Lý do: điều khoản StoreLeads cấm dùng danh sách này để outreach.
 - **Thứ dữ liệu không có.** Ví dụ doanh thu của một app, số tiền merchant trả cho app, lý do merchant gỡ app, store nào cài app trước hay sau. Dữ liệu chỉ cho biết store nào đang có app nào trong từng tháng.
-- **Số liệu "đang xảy ra hôm nay".** Dữ liệu là ảnh chụp theo tháng, snapshot cuối là 9/2026.
+- **Số liệu "đang xảy ra hôm nay".** Dữ liệu là ảnh chụp theo tháng, snapshot cuối là 10/2026.
 
 Khi Claude từ chối, thường nó sẽ gợi ý một câu hỏi gần nhất mà dữ liệu trả lời được. Hãy dùng gợi ý đó.
 

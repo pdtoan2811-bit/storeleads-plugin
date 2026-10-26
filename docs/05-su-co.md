@@ -25,11 +25,11 @@ Một số câu cần đọc nhiều dữ liệu, nhất là câu về stack (ap
 
 ### Claude trả lời mà không thấy chạy truy vấn dữ liệu?
 
-Đó là dấu hiệu Claude đang trả lời bằng kiến thức chung, không phải dữ liệu của mình. Con số như vậy không đáng tin. Hãy gõ: "Hãy tra dữ liệu StoreLeads rồi trả lời lại." Câu trả lời đúng luôn có mốc snapshot và dòng nguồn ("Source: StoreLeads (internal), Oct 2024 – Sep 2026, via Grafana"). Không thấy hai thứ đó thì đừng dùng. Nếu lặp lại, kiểm tra plugin còn **enabled**.
+Đó là dấu hiệu Claude đang trả lời bằng kiến thức chung, không phải dữ liệu của mình. Con số như vậy không đáng tin. Hãy gõ: "Hãy tra dữ liệu StoreLeads rồi trả lời lại." Câu trả lời đúng luôn có mốc snapshot và dòng nguồn ("Source: StoreLeads (internal), Oct 2024 – Oct 2026, via Grafana"). Không thấy hai thứ đó thì đừng dùng. Nếu lặp lại, kiểm tra plugin còn **enabled**.
 
 ### Số khác với website StoreLeads?
 
-Khác một chút là bình thường, vì hai nơi đếm khác nhau. Mình đếm mỗi shop một lần dù shop có nhiều domain, chỉ tính store Shopify đang hoạt động, và dùng ảnh chụp theo tháng. Website StoreLeads đếm từng domain và luôn hiện số mới nhất, còn ở đây là snapshot cuối tháng 9/2026. Chi tiết: [Đọc số cho đúng](./03-doc-so-cho-dung.md). Đừng đặt hai con số cạnh nhau trong cùng một bảng so sánh.
+Khác một chút là bình thường, vì hai nơi đếm khác nhau. Mình đếm mỗi shop một lần dù shop có nhiều domain, chỉ tính store Shopify đang hoạt động, và dùng ảnh chụp theo tháng. Website StoreLeads đếm từng domain và luôn hiện số mới nhất, còn ở đây là snapshot cuối tháng 10/2026. Chi tiết: [Đọc số cho đúng](./03-doc-so-cho-dung.md). Đừng đặt hai con số cạnh nhau trong cùng một bảng so sánh.
 
 ### Số khác với dashboard Grafana?
 
@@ -37,7 +37,7 @@ Hai nơi dùng chung dữ liệu nên đáng ra phải khớp. Nguyên nhân th�
 
 ### Vì sao không có dữ liệu trước 10/2024?
 
-Mình chỉ có 24 snapshot hàng tháng, từ 10/2024 đến 9/2026. Dữ liệu cũ hơn chưa được nạp, nên Claude sẽ nói "không có" thay vì đoán. Cần mốc xa hơn thì hỏi Toàn xem có nạp thêm được không.
+Mình chỉ có 25 snapshot hàng tháng, từ 10/2024 đến 10/2026. Dữ liệu cũ hơn chưa được nạp, nên Claude sẽ nói "không có" thay vì đoán. Cần mốc xa hơn thì hỏi Toàn xem có nạp thêm được không.
 
 ### Dữ liệu có cập nhật hàng ngày không?
 

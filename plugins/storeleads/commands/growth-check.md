@@ -16,8 +16,8 @@ take the one with the most stores, say so in one line, and go on. Run every reci
 you skip it, say which in one line. The audience is a teammate at Qikify / Ownego: no personal or project context beyond this data.
 
 Answer in the language the person writes in, in plain words for a non-technical reader. Quote numbers exactly as the
-queries return them, with the snapshot (Sep 2026). Say these caveats where they apply:
-- "Now" is the latest snapshot (month 23, Sep 2026); "last N days" counts back from 2026-09-27.
+queries return them, with the snapshot (Oct 2026). Say these caveats where they apply:
+- "Now" is the latest snapshot (month 24, Oct 2026); "last N days" counts back from 2026-10-25.
 - Crawl artefacts: Plus dips Feb 2025 / Feb 2026, store jump Nov 2025, some app spikes Sep 2026 — flag them.
 - No data before Oct 2024 — say so, never extrapolate.
 

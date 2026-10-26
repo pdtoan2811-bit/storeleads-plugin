@@ -6,11 +6,11 @@ Claude luôn kèm lưu ý (caveat) cuối câu trả lời. Dưới đây là ý
 
 ## 1. "Hiện nay" là snapshot mới nhất
 
-Snapshot là một ảnh chụp: tại một thời điểm, store nào đang cài app nào. Mình có 24 ảnh, mỗi tháng một ảnh, từ 10/2024 đến 9/2026. "Hiện nay", "tháng này" và "tháng trước" đều là ảnh cuối (9/2026), không phải hôm nay. "30 ngày qua" cũng đếm lùi từ ngày chụp ảnh cuối, không từ hôm nay.
+Snapshot là một ảnh chụp: tại một thời điểm, store nào đang cài app nào. Mình có 25 ảnh, mỗi tháng một ảnh, từ 10/2024 đến 10/2026. "Hiện nay", "tháng này" và "tháng trước" đều là ảnh cuối (10/2026), không phải hôm nay. "30 ngày qua" cũng đếm lùi từ ngày chụp ảnh cuối, không từ hôm nay.
 
 Ví dụ: bạn hỏi "Loox có bao nhiêu store?" vào tháng 12, câu trả lời vẫn là con số của ảnh tháng 9.
 
-**Việc cần làm:** khi trích số, luôn ghi "theo snapshot 9/2026".
+**Việc cần làm:** khi trích số, luôn ghi "theo snapshot 10/2026".
 
 ## 2. Không có dữ liệu trước 10/2024
 
@@ -71,9 +71,9 @@ Các nhóm như "Marketing and conversion" hay "Social trust" là cách nhóm t�
 
 Một câu mẫu, gồm số, mốc thời gian, nguồn và giới hạn:
 
-> "Theo snapshot 9/2026 (StoreLeads, nội bộ), app X có … store, trong đó … là Plus. Số store đếm mỗi shop một lần."
+> "Theo snapshot 10/2026 (StoreLeads, nội bộ), app X có … store, trong đó … là Plus. Số store đếm mỗi shop một lần."
 
-Luôn kèm: (1) mốc snapshot, (2) khoảng thời gian so sánh, (3) lưu ý Claude đã ghi. Câu trả lời của Claude thường có dòng "Source: StoreLeads (internal), Oct 2024 – Sep 2026, via Grafana", hãy giữ nguyên dòng đó.
+Luôn kèm: (1) mốc snapshot, (2) khoảng thời gian so sánh, (3) lưu ý Claude đã ghi. Câu trả lời của Claude thường có dòng "Source: StoreLeads (internal), Oct 2024 – Oct 2026, via Grafana", hãy giữ nguyên dòng đó.
 
 ## Tiếp theo
 

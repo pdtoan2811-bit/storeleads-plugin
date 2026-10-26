@@ -37,7 +37,7 @@ _Biết một app lớn cỡ nào, đang lên hay xuống, thắng ai, thua ai._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Tên app hay trùng nhau. Nếu Claude hỏi lại "ý bạn là app nào", hãy chọn đúng app.
 - Một shop nhiều domain chỉ tính một lần, nên số store thấp hơn số StoreLeads công bố một chút.
 
@@ -61,7 +61,7 @@ _Biết một app lớn cỡ nào, đang lên hay xuống, thắng ai, thua ai._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Tên app hay trùng nhau. Nếu Claude hỏi lại "ý bạn là app nào", hãy chọn đúng app.
 - Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 
@@ -87,7 +87,7 @@ _Biết một app lớn cỡ nào, đang lên hay xuống, thắng ai, thua ai._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Tên app hay trùng nhau. Nếu Claude hỏi lại "ý bạn là app nào", hãy chọn đúng app.
 - "Mất store" gồm cả store đóng cửa/rời dữ liệu, không chỉ gỡ app. Muốn số gỡ thật, hỏi rõ "gỡ app thật".
 - Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
@@ -112,7 +112,7 @@ _Biết một app lớn cỡ nào, đang lên hay xuống, thắng ai, thua ai._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Tên app hay trùng nhau. Nếu Claude hỏi lại "ý bạn là app nào", hãy chọn đúng app.
 
 **Xem trên dashboard:** [Stack](https://storedata.ecvision.ai/d/sl-app-stack)
@@ -139,7 +139,7 @@ _Tìm category đông khách mà leader yếu, hoặc nhóm merchant chưa ai ph
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Nhóm Level 1 / Level 2 là cách nhóm tạm (draft) của team, không phải của Shopify.
 - Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 
@@ -165,7 +165,7 @@ _Tìm category đông khách mà leader yếu, hoặc nhóm merchant chưa ai ph
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Nhóm Level 1 / Level 2 là cách nhóm tạm (draft) của team, không phải của Shopify.
 - Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 
@@ -189,7 +189,7 @@ _Tìm category đông khách mà leader yếu, hoặc nhóm merchant chưa ai ph
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Nhóm Level 1 / Level 2 là cách nhóm tạm (draft) của team, không phải của Shopify.
 
 **Xem trên dashboard:** [Entrants](https://storedata.ecvision.ai/d/sl-cat-entrants)
@@ -214,7 +214,7 @@ _Tìm category đông khách mà leader yếu, hoặc nhóm merchant chưa ai ph
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Nhóm Level 1 / Level 2 là cách nhóm tạm (draft) của team, không phải của Shopify.
 - Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 
@@ -247,7 +247,7 @@ _Xem app và category nào đang tăng nhanh, so với thị trường._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 - Không có dữ liệu trước 10/2024 — hỏi xa hơn thì Claude sẽ nói là không có.
 
@@ -272,7 +272,7 @@ _Xem app và category nào đang tăng nhanh, so với thị trường._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Có vài tháng dữ liệu nhảy bất thường do cách StoreLeads thu thập (Plus 2/2025, 2/2026; 11/2025; 9/2026).
 - Nhóm Level 1 / Level 2 là cách nhóm tạm (draft) của team, không phải của Shopify.
 
@@ -356,7 +356,7 @@ _Shopify Plus, quốc gia, theme, store mới mở._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Tên app hay trùng nhau. Nếu Claude hỏi lại "ý bạn là app nào", hãy chọn đúng app.
 
 **Xem trên dashboard:** [Geo](https://storedata.ecvision.ai/d/sl-app-geo)
@@ -381,7 +381,7 @@ _Shopify Plus, quốc gia, theme, store mới mở._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 - Chỉ dùng nội bộ. Không xuất danh sách store để outreach, không đăng số liệu ra ngoài.
 
 **Xem trên dashboard:** [Geo](https://storedata.ecvision.ai/d/sl-cat-geo)
@@ -404,7 +404,7 @@ _Shopify Plus, quốc gia, theme, store mới mở._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 
 **Xem trên dashboard:** [Merchants](https://storedata.ecvision.ai/d/sl-app-merchants)
 
@@ -426,7 +426,7 @@ _Shopify Plus, quốc gia, theme, store mới mở._
 
 **Lưu ý:**
 
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 
 **Xem trên dashboard:** [Merchants](https://storedata.ecvision.ai/d/sl-app-merchants)
 
@@ -456,7 +456,7 @@ _Một trang tổng hợp gửi được cho sếp hoặc đối tác nội bộ
 **Lưu ý:**
 
 - Chỉ dùng nội bộ. Không xuất danh sách store để outreach, không đăng số liệu ra ngoài.
-- "Hiện nay" = snapshot mới nhất (9/2026), không phải hôm nay. Dữ liệu có 24 tháng, 10/2024 → 9/2026.
+- "Hiện nay" = snapshot mới nhất (10/2026), không phải hôm nay. Dữ liệu có 25 tháng, 10/2024 → 10/2026.
 
 ### Danh sách store (giới hạn)
 

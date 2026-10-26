@@ -26,9 +26,9 @@ Several types on one subject = one document with one page each (a "pack"); the r
 
 For a VENDOR with several apps (e.g. "Qikify"), or one app. Pages:
 
-**Overview page** (only with 2+ apps): `scoreTable` — one row per app: `area` (≤ 3 words), `stores`, `series` (24 months,
+**Overview page** (only with 2+ apps): `scoreTable` — one row per app: `area` (≤ 3 words), `stores`, `series` (25 months,
 from R3) or `growth`, `catGrowth` (category installs 12-month %, R1), `share` (app stores ÷ category installs × 100),
-`leader` + `leaderStores`, `href` to its page, and `catSeries` (24 category installs, R1) — never a single `catGrowth`
+`leader` + `leaderStores`, `href` to its page, and `catSeries` (25 category installs, R1) — never a single `catGrowth`
 number unless you have no series. The table computes status (Vượt / Giữ nhịp / Tụt lại / Số chưa chắc / Còn
 nhỏ) and the gap bar itself, and prints the legend. Then `how`.
 
@@ -49,7 +49,7 @@ risers/newcomers. A rival is "direct" (same job) or "adjacent" (overlapping suit
 ## 11 · Portfolio scorecard (Thomas: "I love this one", 2026-10-09)
 Every app of a vendor on one page, each against ITS OWN category. One page, `question` "N mảng, mảng nào đang tụt lại?",
 blocks: `scoreTable` (subject = the vendor) → `how` (share = app stores ÷ category installs; click a name to jump).
-Rows need, per app: `area` (≤ 3 words), `stores` (month 23), `series` (24, R3), `catSeries` (24, R10 — the app's
+Rows need, per app: `area` (≤ 3 words), `stores` (month 24), `series` (25, R3), `catSeries` (25, R10 — the app's
 merged category set), `share`, `leader` + `leaderStores` (biggest app in the set, R2). Merge duplicate listings first (R0).
 The table prints the status legend, computes status and the gap bar, and sorts by stores. Add `href` to rows only when the
 document has a page with that `id` (as in the competitor report, where this is the overview page).

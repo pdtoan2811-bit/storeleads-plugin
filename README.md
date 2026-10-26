@@ -4,7 +4,7 @@ Plugin nội bộ cho team Qikify / Ownego. Hiện có một plugin:
 
 **StoreLeads**: hỏi Claude về app Shopify và store bằng tiếng thường, ví dụ "Klaviyo có bao nhiêu store, bao nhiêu
 % là Plus?", "Ai đang cạnh tranh với Judge.me?", "Store bỏ Loox thì chuyển sang app nào?". Claude đọc dữ liệu
-StoreLeads (24 snapshot theo tháng, 10/2024 → 9/2026) qua Grafana của team, chỉ đọc, không sửa được gì.
+StoreLeads (25 snapshot theo tháng, 10/2024 → 10/2026) qua Grafana của team, chỉ đọc, không sửa được gì.
 
 > ⚠️ **Chỉ dùng nội bộ.** Không xuất danh sách store để đi outreach, không công bố số liệu ra ngoài (điều khoản
 > StoreLeads §2).

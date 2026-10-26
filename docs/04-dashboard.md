@@ -34,7 +34,7 @@ Chưa vào được: xem [Sự cố](./05-su-co.md).
 Trên cùng mỗi trang có hai **cửa**. **App deep-dive** xem một app từ mọi góc. **Category overview** xem cả thị trường, từ nhóm lớn xuống từng category. Bấm để đổi cửa bất cứ lúc nào.
 
 > [!TIP]
-> Đừng chỉnh ô thời gian góc trên bên phải: dữ liệu đi theo tháng (10/2024 → 9/2026), không theo ô đó.
+> Đừng chỉnh ô thời gian góc trên bên phải: dữ liệu đi theo tháng (10/2024 → 10/2026), không theo ô đó.
 
 ### Bước 2. Chọn app bạn muốn xem
 
@@ -52,7 +52,7 @@ Bấm ô **App** rồi gõ vài chữ tên app (ví dụ *loox*), chọn đúng 
 Hàng thẻ trên cùng là câu trả lời ngắn: app có bao nhiêu store, bao nhiêu là Shopify Plus, tăng giảm thế nào. Dòng chữ nhỏ dưới mỗi số giải thích con số đó nghĩa là gì.
 
 > [!NOTE]
-> "Hiện nay" là snapshot mới nhất (9/2026), không phải hôm nay.
+> "Hiện nay" là snapshot mới nhất (10/2026), không phải hôm nay.
 
 ### Bước 4. Chuyển tab để xem góc khác
 
@@ -142,7 +142,7 @@ Phần lớn tab ở cửa này dùng được cho câu hỏi "có nên làm app
 - **So sánh hai app:** **Compare with** ở tab Growth (hai đường trên cùng biểu đồ). **And also has** ở tab Stack là
   việc khác: chỉ xét store có cả hai app.
 - **Mốc thời gian:** dùng **Compare to**. Đừng chỉnh ô thời gian góc trên bên phải: dữ liệu đi theo tháng
-  (10/2024 → 9/2026), không theo ô đó.
+  (10/2024 → 10/2026), không theo ô đó.
 - **Khoanh vùng category:** **Level 1 → Level 2 → Category**, hoặc bấm thẳng một ô trên bản đồ. Level 1 / Level 2 là
   nhóm tạm (draft) của team, xem [Đọc số cho đúng](./03-doc-so-cho-dung.md).
 - **Chia sẻ:** link trên thanh địa chỉ giữ nguyên app và bộ lọc. Gửi trong Slack nội bộ, người nhận (đã đăng nhập)
