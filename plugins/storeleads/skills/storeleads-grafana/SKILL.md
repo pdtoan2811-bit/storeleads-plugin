@@ -80,6 +80,7 @@ Give percentages to one decimal (2.3%), with the two counts behind them.
 | `store_month` | store × month | `plan`, `estimated_sales`, `monthly_app_spend`, `product_count`, `app_count` |
 | `category_month_agg` | category × month × country × Plus | `stores` (distinct stores with an app LISTED there), `installs`, `apps` |
 
+| `stores_latest` | store (all platforms) | The full StoreLeads record of the latest weekly snapshot (2026-10-25): 110 columns — see **Full latest snapshot** below |
 | `outreach_cohort` (view) | store × delisted competitor app | Stores that ran an app Shopify delisted in Oct 2026 — see **Delisted-app outreach cohort** below |
 | `outreach_delisted_users` | store × delisted competitor app | Same rows without the cohort flags |
 | `outreach_target_apps` | delisted app | `grp`, `app_name`, `token`, `delist_date`, `store_count_ref`, `plus_count_ref` |
@@ -88,6 +89,28 @@ Give percentages to one decimal (2.3%), with the two counts behind them.
 
 Plus filter: `is_plus = 1` in the `*_agg` tables; `bitTest(plus_months, m)` on `store_dim`.
 Active in month m: `bitTest(active_months, m)`.
+
+## Full latest snapshot (`slim.stores_latest`)
+
+One row per domain from the newest full StoreLeads file, **snapshot 2026-10-25** (weekly files exist on Wasabi; this
+one table holds a single week and is not refreshed when a new month loads — say the date). It has every field
+StoreLeads returns, which the monthly tables drop: `contact_info`, `tags`, `rank` / `rank_percentile`,
+`platform_rank`, `employee_count`, `estimated_sales_yearly`, `estimated_page_views`, `last_plan`,
+`last_plan_change_at`, `max_product_published_at`, `product_images_created_30/90`, `redirects_to`, `state`,
+`technologies`, `features`, `categories`, prices (`avg_price_usd`…), the `*_page` URLs, `sales_channels`,
+`shipping_carriers`, review-app fields (`trustpilot`, `yotpo`, `judgeme`, `loox`, `okendo`, `stamped`,
+`reviews_io`) and more.
+
+- **Always filter `platform = 'shopify' AND state = 'Active'`** (capital A). The table also holds Magento, WooCommerce
+  and others, and inactive / password-protected stores. Its store counts will not match `store_dim` (one shop once,
+  Shopify only, monthly) — never put the two in one comparison.
+- `apps`, `technologies`, `contact_info` are JSON **strings**. Use the ready arrays instead: `app_names`, `app_ids`,
+  `technology_names`, `theme_name`. For one app: `has(app_names, 'APP NAME')` (the name, not the key).
+- Join to the monthly tables on `domain` = `store_dim.domain` (every active store in `store_dim` matches exactly one row).
+- Use it when a question needs a field the monthly tables lack (rank, employees, tags, contacts, last plan change,
+  review apps…). For trends over months keep using `slim.*` month tables: this is a single week.
+- Store lists follow the "Store lists" rule above (as many rows as asked). Contacts: `contact_info` is a JSON string
+  (`[{"type","value","source",...}]`); for the outreach cohort use the ready table `outreach_store_contact` instead.
 
 ## Delisted-app outreach cohort (`slim.outreach_*`)
 
